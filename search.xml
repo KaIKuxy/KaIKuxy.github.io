@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[bbctest]]></title>
+      <url>https://kaikuxy.github.io/2017/03/21/bbctest/</url>
+      <content type="html"><![CDATA[<iframe width="400" height="500" frameborder="0" src="http://www.bbc.co.uk/programmes/p04xfxhz/player"></iframe>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[math]]></title>
+      <url>https://kaikuxy.github.io/2017/03/21/math/</url>
+      <content type="html"><![CDATA[<p>simple line $a = b + c$</p>
+<p>$\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)$</p>
+<p>$$<br>\frac{\partial u}{\partial t} = h^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)<br>$$</p>
+<p>$$<br>h(n) = h(0) * h(n - 1) + h(1) + b + c + d + e + f + h(n - 3)<br>$$</p>
+<p>$$<br>h(n) = h(0) <em> h(n - 1) + h(1) + b + c + d + e + f + h(n - 3) </em> h(n - 4)<br>$$</p>
+<p>h(n) = h(0) <em> h(n - 1) + h(1) + b + c + d + e + f + h(n - 3) </em> h(n - 4)</p>
+<p>h(n) = h(0) <em> h(n - 1) + h(1) </em> h(n - 2) + … + h(n - 1) * h(0)</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Catalan数]]></title>
       <url>https://kaikuxy.github.io/2017/03/20/Catalan%E6%95%B0/</url>
       <content type="html"><![CDATA[<p>上个星期数据结构出了一道题目，给定4个数1,2,3,4入栈序列，问可能的出栈序列，以及出栈序列有哪些。<br>因为只要求4个元素的答案，所以直接手写判断了，判断方法按照栈的性质来，对于一个待判断的序列，需要满足对于所有元素，在这个元素之后出现的所有比他先入栈的（在这里给出了就是元素1234所以就是比他小的）应满足后入先出的规则（在这里就是满足递减）。这样就很容易判断出哪些是合法的出栈序列了。<br>我们知道了对于每个序列如何判断是否合法，那么对于一个n个元素的序列，他的所有合法的出栈序列有多少个呢？</p>
