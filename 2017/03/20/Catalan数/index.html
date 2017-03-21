@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
     <head>
-    <!-- 
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
         Version: 1.3.0 -->
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="KaIKu Yu Xia">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,数据结构,组合数学">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -46,11 +46,11 @@
     <meta name="apple-mobile-web-app-title" content="Hexo">
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://KaIKu.com">
+    <meta property="og:url" content="https://kaikuxy.github.io">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Catalan数 | Hexo">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="数据结构"> <meta property="og:article:tag" content="组合数学"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -134,12 +134,7 @@
 
     <style>
       body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -185,14 +180,14 @@
     <!-- Bing Background -->
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
 
     
         <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
                 <!-- Main Container -->
@@ -234,7 +229,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Catalan数"><span class="post-toc-number">1.</span> <span class="post-toc-text">Catalan数</span></a></li></ol>
+        
 
         <!--
         <li class="mdl-menu__item">
@@ -258,16 +253,8 @@
                 
     <!-- Paradox Post Header -->
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
-</script>
-
-        
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Catalan_number_4x4_grid_example.svg/690px-Catalan_number_4x4_grid_example.svg.png)">
     
             <p class="article-headline-p">
                 Catalan数
@@ -313,7 +300,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/数据结构/">数据结构</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/组合数学/">组合数学</a>
     </ul>
     
 
@@ -326,10 +313,21 @@
     
 
     
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Catalan数&url=http://KaIKu.com//2017/03/20/Catalan数/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Catalan数&url=https://kaikuxy.github.io//2017/03/20/Catalan数/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -338,7 +336,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Catalan数&url=http://KaIKu.com//2017/03/20/Catalan数/index.html&via=KaIKu Yu Xia" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Catalan数&url=https://kaikuxy.github.io//2017/03/20/Catalan数/index.html&via=KaIKu Yu Xia" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -347,7 +345,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://KaIKu.com//2017/03/20/Catalan数/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://kaikuxy.github.io//2017/03/20/Catalan数/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -356,7 +354,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://KaIKu.com//2017/03/20/Catalan数/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://kaikuxy.github.io//2017/03/20/Catalan数/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -380,44 +378,45 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="Catalan数"><a href="#Catalan数" class="headerlink" title="Catalan数"></a>Catalan数</h1><p>上个星期数据结构出了一道题目，给定4个数1,2,3,4入栈序列，问可能的出栈序列，以及出栈序列有哪些。<br>因为只要求4个元素的答案，所以直接手写判断了，判断方法按照栈的性质来，对于一个待判断的序列，需要满足对于所有元素，在这个元素之后出现的所有比他先入栈的（在这里给出了就是元素1234所以就是比他小的）应满足后入先出的规则（在这里就是满足递减）。这样就很容易判断出哪些是合法的出栈序列了。<br>我们知道了对于每个序列如何判断是否合法，那么对于一个n个元素的序列，他的所有合法的出栈序列有多少个呢？</p>
+        <p>上个星期数据结构出了一道题目，给定4个数1,2,3,4入栈序列，问可能的出栈序列，以及出栈序列有哪些。<br>因为只要求4个元素的答案，所以直接手写判断了，判断方法按照栈的性质来，对于一个待判断的序列，需要满足对于所有元素，在这个元素之后出现的所有比他先入栈的（在这里给出了就是元素1234所以就是比他小的）应满足后入先出的规则（在这里就是满足递减）。这样就很容易判断出哪些是合法的出栈序列了。<br>我们知道了对于每个序列如何判断是否合法，那么对于一个n个元素的序列，他的所有合法的出栈序列有多少个呢？</p>
 <p>先来看另一个问题：</p>
 <p>对于n对括号()，有多少种匹配方式？( n = 2的情况：()() 或者 (())两种 )</p>
 <p>很容易想到可以从n-1对括号推过来<br>（….）….<br>括号内以及括号外是已经匹配完成的n-1对括号，括号内括号对数可以为0,1,2,…..,n-1<br>得出递推式</p>
 <blockquote>
-<p><img src="http://latex.codecogs.com/gif.latex?h(n)=h(0)*h(n-1)+h(1)*h(n-1)+\cdots+h(n-1)*h(0)"><br>h(n)为n对括号匹配方式</p>
+<p><img src="http://latex.codecogs.com/gif.latex?h(n) = \sum_{i=0}^{n-1}h(i)*h(n-1-i)"><br>h(n)为n对括号匹配方式</p>
 </blockquote>
 <p>数列h(n)就是Catalan数列，前几项是1,1,2,5,14,42,132,429,1430,4862,16796<br>上面是递推式，直接求h(n)的话就是：</p>
 <blockquote>
 <p><img src="http://latex.codecogs.com/gif.latex?h(n)=\frac{1}{n+1}\binom{2n}{n}"></p>
 </blockquote>
 <p>我们再来看刚刚的n元素出栈序列种数问题<br>每一个合法的出栈序列都对应一个合法的入栈序列，那么可以把入栈当作左括号，出栈当作右括号。不管入栈出栈元素是哪一个，某一个入栈出栈序列合法的条件是每次出栈前面必定一一对应着一个入栈的元素，可以发现这和n对括号匹配的问题是一样的。</p>
-<p>答案就很明显了，n元素出栈序列种数为$h(n)$</p>
+<p>答案就很明显了，n元素出栈序列种数为<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
 <p>再来看一些关于Catalan数的问题：</p>
 <p><strong>1. <img src="http://latex.codecogs.com/gif.latex?P=A1*A2*\cdots*An">，问有多少种计算先后顺序方案</strong></p>
 <p>运用结合律形成各种计算先后顺序，相当于加上若干个括号，同样运用递推的思想得出</p>
 <blockquote>
-<p><img src="http://latex.codecogs.com/gif.latex?f(n)=f(1)*f(n-1)+f(2)*f(n-2)+\cdots+f(n-1)*f(1)"><br><img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-1)"></p>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=1}^{n-1}f(i)*f(n-i)"><br><img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-1)"></p>
 </blockquote>
 <hr>
 <p><strong>2.n个结点的二叉树，有多少种形态</strong></p>
 <p>相当于在当前根下左子树种数*右子树种数，直接得出</p>
 <blockquote>
-<p><img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-1)"></p>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=0}^{n-1}f(i)*f(n-1-i)"></p>
 </blockquote>
 <hr>
-<p><strong>3.在圆上选择$2*n$ 个点，将这些点成对连起来形成n条线段，求满足这n条线段不想交的方案数</strong></p>
-<p>任意选择一个点开始，在剩下n-1个点中选取的点应满足由这两个点形成的线段两边都有偶数个。假设如果一边有奇数个，那么这边一定有一个点被剩下来使得它只有和其他线段相交才能到另一边与其他点连接成一条线段。<br>记$f(n)$ 为选择n个点满足题目要求的方案数<br>根据上面所说可以得出递推式</p>
+<p><strong>3.在圆上选择<img src="http://latex.codecogs.com/gif.latex?2*n"> 个点，将这些点成对连起来形成n条线段，求满足这n条线段不想交的方案数</strong></p>
+<p>任意选择一个点开始，在剩下n-1个点中选取的点应满足由这两个点形成的线段两边都有偶数个。假设如果一边有奇数个，那么这边一定有一个点被剩下来使得它只有和其他线段相交才能到另一边与其他点连接成一条线段。<br>记<img src="http://latex.codecogs.com/gif.latex?f(n)"> 为选择n个点满足题目要求的方案数<br>根据上面所说可以得出递推式</p>
 <blockquote>
-<p><img src="http://latex.codecogs.com/gif.latex?f(n)=f(0)*f(n-2)+f(2)*f(n-4)+f(4)*f(n-6)+\cdots+f(n-2)*f(0)"><br>发现<img src="http://latex.codecogs.com/gif.latex?f(n)=h(\frac{n}{2})"></p>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=0}^{\frac{n-2}{2}}f(i*2)*f(n-2-i*2)"></p>
 </blockquote>
+<p>发现<img src="http://latex.codecogs.com/gif.latex?f(n)=h(\frac{n}{2})"></p>
 <hr>
 <p><strong>4. n个点的凸多边形，划分成一个个三角形区域的方案数</strong></p>
 <p>显然最后划分成的所有三角形中存在一个三角形它的两个点是相邻的。不妨假设我们对于当前凸多边形选取某两个相邻的点当作三角形的期中两个点，我们需要寻找剩下一个点来形成一个三角形<br>很容易发现，当我们将某个点设为这个三角形剩下的一个点的时候，这个凸多边形被我们划分成了三块，一块是我们划分出的三角形，另两块为分布在该三角形两边的凸多边形，那么方案数就是</p>
 <blockquote>
 <p>左边凸多边形划分三角形的方案数*右边凸多边形的方案数</p>
 </blockquote>
-<p>记<img src="http://latex.codecogs.com/gif.latex?f(n)"> 为n个点的凸多边形划分三角形的方案数，我们记</p>
+<p> 记<img src="http://latex.codecogs.com/gif.latex?f(n)"> 为n个点的凸多边形划分三角形的方案数，我们记</p>
 <blockquote>
 <p><img src="http://latex.codecogs.com/gif.latex?f(2)=1,f(3)=1"><br>（当<img src="http://latex.codecogs.com/gif.latex?n=2"> 时，意味着在上一层划分时三个点是相邻的）</p>
 </blockquote>
@@ -428,13 +427,14 @@
 <p>发现<img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-2)"></p>
 <hr>
 <p><strong>5. wiki上的一个：在一个n*n的格子中，从左下出发到右上，每次只能向右或者向上走一个格子的一条边，不能跨过左下到右上的对角线，求行动方案数</strong></p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Catalan_number_4x4_grid_example.svg/450px-Catalan_number_4x4_grid_example.svg.png" alt="这里写图片描述"><br>我们知道走到右上行动次数一定是n次向右与n次向上，不能跨过对角线的意思就是行动当前向上行动的次数不能大于向右行动的次数。<br>其实就和括号配对的问题是一样的了，方案数就是$h(n)$</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Catalan_number_4x4_grid_example.svg/450px-Catalan_number_4x4_grid_example.svg.png" alt="这里写图片描述"></p>
+<p>我们知道走到右上行动次数一定是n次向右与n次向上，不能跨过对角线的意思就是行动当前向上行动的次数不能大于向右行动的次数。<br>其实就和括号配对的问题是一样的了，方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
 <hr>
 <p><strong>6. 还有一个贴切生活的问题：<img src="http://latex.codecogs.com/gif.latex?2*n"> 个人排队进入剧院，入场费5元，n个人只有5元钞票，剩下n个人只有10元钞票，收银员当前没有供找零的钱，问可行的排队方案（一点都不贴切生活）</strong></p>
 <p>和括号配对也是一样，只有5元钞票的人视为入栈，只有10元钞票的人必须找零5元，相当于出栈，那么方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
 <hr>
-<p><strong>7. <img src="http://latex.codecogs.com/gif.latex?2*n">个人排队，排成两排，每排从左到右从高到矮，第二排的人比第一排的人高，问排队的方案数</strong></p>
-<p>将<img src="http://latex.codecogs.com/gif.latex?2*n">个人排到两排当中，第二排视为左括号，第一排视为右括号，满足一个左括号对应一个右括号就代表左括号的人比右括号的人高，每排从高到矮满足方案数不重复，对应的意思就是（←左括号1）（←左括号2）和（←左括号2）（←左括号1）是等价的，这么想就又变成了括号配对问题，两排括号还原到一行中就是一个合法的括号配对<br>方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
+<p><strong>7. 2*n个人排队，排成两排，每排从左到右从高到矮，第二排的人比第一排的人高，问排队的方案数</strong></p>
+<p>将2*n个人排到两排当中，第二排视为左括号，第一排视为右括号，满足一个左括号对应一个右括号就代表左括号的人比右括号的人高，每排从高到矮满足方案数不重复，对应的意思就是（←左括号1）（←左括号2）和（←左括号2）（←左括号1）是等价的，这么想就又变成了括号配对问题，两排括号还原到一行中就是一个合法的括号配对<br>方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
 
     
 
@@ -448,6 +448,34 @@
                 
                     
 
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    queue.offer(function() {
+            var disqus_config = function () {
+                this.page.url = 'https://kaikuxy.github.io/2017/03/20/Catalan数/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//kaikuxy.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
 
 
 
@@ -464,7 +492,7 @@
 
     <!-- Next Nav -->
     
-        <a href="/2017/03/20/testing/" id="post_nav-older" class="next-content">
+        <a href="/2017/03/19/hello-world/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -507,7 +535,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        youremail@email.com
+        xybrightsummer@gmail.com
         <b class="caret"></b>
     </a>
 </div>
@@ -556,13 +584,28 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
     
 
     <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/数据结构/">数据结构<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/组合数学/">组合数学<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
     
 
     <!-- Pages  -->
@@ -590,13 +633,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            主题 - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -676,6 +712,12 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
+        <a href="https://github.com/KaIKuxy" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
 
     <!-- LinkedIn -->
     
@@ -749,13 +791,21 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+    <script src="/js/smoothscroll.js"></script>
 
 
 
 
 
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//kaikuxy.disqus.com/count.js" async></script>
 
 
 
@@ -763,6 +813,106 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Local Search-->
+
+    <script>
+    var searchFunc = function(path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: 'xml',
+            success: function( xmlResponse ) {
+                // get the contents from search data
+                var datas = $( 'entry', xmlResponse ).map(function() {
+                    return {
+                        title: $( 'title', this ).text(),
+                        content: $('content',this).text(),
+                        url: $( 'url' , this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function() {
+                    var str='<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = '';
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function(data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if(data_title !== '' && data_content !== '') {
+                            keywords.forEach(function(keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if( index_title < 0 && index_content < 0 ) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += '<li><a href="'+ data_url +'" class="search-result-title" target="_blank">'+ data_title;
+                            var content = data.content.trim().replace(/<[^>]+>/g, '');
+                            if (first_occur >= 0) {
+                                // cut out characters
+                                var start = first_occur - 6;
+                                var end = first_occur + 6;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 10;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, 'gi');
+                                    match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
+                                })
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
+                            }
+                        }
+                    });
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    }
+</script>
+
+
+    <script>
+        var inputArea = document.querySelector('#search');
+        var getSearchFile = function() {
+            var path = 'search.xml';
+            searchFunc(path, 'search', 'local-search-result');
+        }
+
+        if(inputArea) {
+            inputArea.onfocus = function() {
+                getSearchFile();
+            }
+        }
+    </script>
 
 
 <!-- Window Load-->
@@ -777,7 +927,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                 </main>
-            </div>
+            </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
         </body>
     
 </html>

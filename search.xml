@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[Catalan数]]></title>
+      <url>https://kaikuxy.github.io/2017/03/20/Catalan%E6%95%B0/</url>
+      <content type="html"><![CDATA[<p>上个星期数据结构出了一道题目，给定4个数1,2,3,4入栈序列，问可能的出栈序列，以及出栈序列有哪些。<br>因为只要求4个元素的答案，所以直接手写判断了，判断方法按照栈的性质来，对于一个待判断的序列，需要满足对于所有元素，在这个元素之后出现的所有比他先入栈的（在这里给出了就是元素1234所以就是比他小的）应满足后入先出的规则（在这里就是满足递减）。这样就很容易判断出哪些是合法的出栈序列了。<br>我们知道了对于每个序列如何判断是否合法，那么对于一个n个元素的序列，他的所有合法的出栈序列有多少个呢？</p>
+<p>先来看另一个问题：</p>
+<p>对于n对括号()，有多少种匹配方式？( n = 2的情况：()() 或者 (())两种 )</p>
+<p>很容易想到可以从n-1对括号推过来<br>（….）….<br>括号内以及括号外是已经匹配完成的n-1对括号，括号内括号对数可以为0,1,2,…..,n-1<br>得出递推式</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?h(n) = \sum_{i=0}^{n-1}h(i)*h(n-1-i)"><br>h(n)为n对括号匹配方式</p>
+</blockquote>
+<p>数列h(n)就是Catalan数列，前几项是1,1,2,5,14,42,132,429,1430,4862,16796<br>上面是递推式，直接求h(n)的话就是：</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?h(n)=\frac{1}{n+1}\binom{2n}{n}"></p>
+</blockquote>
+<p>我们再来看刚刚的n元素出栈序列种数问题<br>每一个合法的出栈序列都对应一个合法的入栈序列，那么可以把入栈当作左括号，出栈当作右括号。不管入栈出栈元素是哪一个，某一个入栈出栈序列合法的条件是每次出栈前面必定一一对应着一个入栈的元素，可以发现这和n对括号匹配的问题是一样的。</p>
+<p>答案就很明显了，n元素出栈序列种数为<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
+<p>再来看一些关于Catalan数的问题：</p>
+<p><strong>1. <img src="http://latex.codecogs.com/gif.latex?P=A1*A2*\cdots*An">，问有多少种计算先后顺序方案</strong></p>
+<p>运用结合律形成各种计算先后顺序，相当于加上若干个括号，同样运用递推的思想得出</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=1}^{n-1}f(i)*f(n-i)"><br><img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-1)"></p>
+</blockquote>
+<hr>
+<p><strong>2.n个结点的二叉树，有多少种形态</strong></p>
+<p>相当于在当前根下左子树种数*右子树种数，直接得出</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=0}^{n-1}f(i)*f(n-1-i)"></p>
+</blockquote>
+<hr>
+<p><strong>3.在圆上选择<img src="http://latex.codecogs.com/gif.latex?2*n"> 个点，将这些点成对连起来形成n条线段，求满足这n条线段不想交的方案数</strong></p>
+<p>任意选择一个点开始，在剩下n-1个点中选取的点应满足由这两个点形成的线段两边都有偶数个。假设如果一边有奇数个，那么这边一定有一个点被剩下来使得它只有和其他线段相交才能到另一边与其他点连接成一条线段。<br>记<img src="http://latex.codecogs.com/gif.latex?f(n)"> 为选择n个点满足题目要求的方案数<br>根据上面所说可以得出递推式</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n) = \sum_{i=0}^{\frac{n-2}{2}}f(i*2)*f(n-2-i*2)"></p>
+</blockquote>
+<p>发现<img src="http://latex.codecogs.com/gif.latex?f(n)=h(\frac{n}{2})"></p>
+<hr>
+<p><strong>4. n个点的凸多边形，划分成一个个三角形区域的方案数</strong></p>
+<p>显然最后划分成的所有三角形中存在一个三角形它的两个点是相邻的。不妨假设我们对于当前凸多边形选取某两个相邻的点当作三角形的期中两个点，我们需要寻找剩下一个点来形成一个三角形<br>很容易发现，当我们将某个点设为这个三角形剩下的一个点的时候，这个凸多边形被我们划分成了三块，一块是我们划分出的三角形，另两块为分布在该三角形两边的凸多边形，那么方案数就是</p>
+<blockquote>
+<p>左边凸多边形划分三角形的方案数*右边凸多边形的方案数</p>
+</blockquote>
+<p> 记<img src="http://latex.codecogs.com/gif.latex?f(n)"> 为n个点的凸多边形划分三角形的方案数，我们记</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?f(2)=1,f(3)=1"><br>（当<img src="http://latex.codecogs.com/gif.latex?n=2"> 时，意味着在上一层划分时三个点是相邻的）</p>
+</blockquote>
+<p>得出递推式</p>
+<blockquote>
+<p><img src="http://latex.codecogs.com/gif.latex?f(n)=f(2)*f(n-1)+f(3)*f(n-2)+\cdots+f(n-1)*f(2)"></p>
+</blockquote>
+<p>发现<img src="http://latex.codecogs.com/gif.latex?f(n)=h(n-2)"></p>
+<hr>
+<p><strong>5. wiki上的一个：在一个n*n的格子中，从左下出发到右上，每次只能向右或者向上走一个格子的一条边，不能跨过左下到右上的对角线，求行动方案数</strong></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Catalan_number_4x4_grid_example.svg/450px-Catalan_number_4x4_grid_example.svg.png" alt="这里写图片描述"></p>
+<p>我们知道走到右上行动次数一定是n次向右与n次向上，不能跨过对角线的意思就是行动当前向上行动的次数不能大于向右行动的次数。<br>其实就和括号配对的问题是一样的了，方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
+<hr>
+<p><strong>6. 还有一个贴切生活的问题：<img src="http://latex.codecogs.com/gif.latex?2*n"> 个人排队进入剧院，入场费5元，n个人只有5元钞票，剩下n个人只有10元钞票，收银员当前没有供找零的钱，问可行的排队方案（一点都不贴切生活）</strong></p>
+<p>和括号配对也是一样，只有5元钞票的人视为入栈，只有10元钞票的人必须找零5元，相当于出栈，那么方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
+<hr>
+<p><strong>7. 2*n个人排队，排成两排，每排从左到右从高到矮，第二排的人比第一排的人高，问排队的方案数</strong></p>
+<p>将2*n个人排到两排当中，第二排视为左括号，第一排视为右括号，满足一个左括号对应一个右括号就代表左括号的人比右括号的人高，每排从高到矮满足方案数不重复，对应的意思就是（←左括号1）（←左括号2）和（←左括号2）（←左括号1）是等价的，这么想就又变成了括号配对问题，两排括号还原到一行中就是一个合法的括号配对<br>方案数就是<img src="http://latex.codecogs.com/gif.latex?h(n)"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据结构 </category>
+            
+            <category> 组合数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 组合数学 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>https://kaikuxy.github.io/2017/03/19/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>
