@@ -383,31 +383,31 @@
         <p>一道DFS一道BFS</p>
 <p>1979:</p>
 <p>DFS无脑扫就可以了</p>
-<pre><code>#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
+<pre class=" language-C++"><code class="language-C++">#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <cstring>
 #define MaxW 20
 using namespace std;
 
 int W, H, ans;
 char input;
 bool sign[MaxW + 10][MaxW + 10];
-pair &lt;int, int&gt; start;
+pair <int, int> start;
 bool tra[MaxW + 10][MaxW + 10];
 
 void Tra(int, int);
 
 int main() {
-    while (scanf(&quot;%d%d&quot;, &amp;W, &amp;H), !(W == 0 &amp;&amp; H == 0)) {
+    while (scanf("%d%d", &W, &H), !(W == 0 && H == 0)) {
         ans = 0;
         getchar();
         memset(tra, 0, sizeof(tra));
-        for (int i = 1;i &lt;= H;++ i) {
-            for (int j = 1;j &lt;= W;++ j) {
-                scanf(&quot;%c&quot;, &amp;input);
-                if(input == &#39;.&#39;)    sign[i][j] = true;
-                else if(input == &#39;#&#39;)    sign[i][j] = false;
+        for (int i = 1;i <= H;++ i) {
+            for (int j = 1;j <= W;++ j) {
+                scanf("%c", &input);
+                if(input == '.')    sign[i][j] = true;
+                else if(input == '#')    sign[i][j] = false;
                 else {
                     sign[i][j] = true;
                     start = make_pair(i, j);
@@ -416,25 +416,26 @@ int main() {
             getchar();
         }
         Tra (start.first, start.second);
-        printf(&quot;%d\n&quot;, ans);
+        printf("%d\n", ans);
     }
     return 0;
 }
 
 void Tra(int x, int y) {
-    //printf (&quot;%d %d\n&quot;, x, y);
+    //printf ("%d %d\n", x, y);
     ++ ans;
     tra[x][y] = true;
-    if(x + 1 &lt;= H &amp;&amp; sign[x + 1][y] &amp;&amp; !tra[x + 1][y])
+    if(x + 1 <= H && sign[x + 1][y] && !tra[x + 1][y])
         Tra(x + 1, y);
-    if(x - 1 &gt;= 1 &amp;&amp; sign[x - 1][y] &amp;&amp; !tra[x - 1][y])
+    if(x - 1 >= 1 && sign[x - 1][y] && !tra[x - 1][y])
         Tra(x - 1, y);
-    if(y + 1 &lt;= W &amp;&amp; sign[x][y + 1] &amp;&amp; !tra[x][y + 1])
+    if(y + 1 <= W && sign[x][y + 1] && !tra[x][y + 1])
         Tra(x, y + 1);
-    if(y - 1 &gt;= 1 &amp;&amp; sign[x][y - 1] &amp;&amp; !tra[x][y - 1])
+    if(y - 1 >= 1 && sign[x][y - 1] && !tra[x][y - 1])
         Tra(x, y - 1);
 }
-</code></pre><p>问题就出在3669上</p>
+</code></pre>
+<p>问题就出在3669上</p>
 <p>做法没什么好说的，预处理每个点最早被流星破坏的时间入队前判断一下当前时间是否在最早被流星破坏的时间前就可以了<br>然后注意题目中给的数据范围是流星坠落的数据范围，并不是整块地的<br>所以要再开大一点<br>然后T了3，4次<br>最后终于发现了问题<br>在每次入队的时候先把visit给标记了，要不然会多出很多很多相同的冗余元素在队里面，因为bfs和dfs不一样，bfs会一层中一次性入很多元素</p>
 <pre><code>#include &lt;cstdio&gt;
 #include &lt;cstdlib&gt;
@@ -998,22 +999,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                 </main>
-            </div>
-        <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+            </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        </body>
     
 </html>
