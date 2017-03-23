@@ -4,6 +4,162 @@
   
     
     <entry>
+      <title><![CDATA[POJ 1979 3669 BFS DFS]]></title>
+      <url>https://kaikuxy.github.io/2017/03/23/poj-1979-3669/</url>
+      <content type="html"><![CDATA[<p>一道DFS一道BFS</p>
+<p>1979:</p>
+<p>DFS无脑扫就可以了</p>
+<pre><code>#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#define MaxW 20
+using namespace std;
+
+int W, H, ans;
+char input;
+bool sign[MaxW + 10][MaxW + 10];
+pair &lt;int, int&gt; start;
+bool tra[MaxW + 10][MaxW + 10];
+
+void Tra(int, int);
+
+int main() {
+    while (scanf(&quot;%d%d&quot;, &amp;W, &amp;H), !(W == 0 &amp;&amp; H == 0)) {
+        ans = 0;
+        getchar();
+        memset(tra, 0, sizeof(tra));
+        for (int i = 1;i &lt;= H;++ i) {
+            for (int j = 1;j &lt;= W;++ j) {
+                scanf(&quot;%c&quot;, &amp;input);
+                if(input == &#39;.&#39;)    sign[i][j] = true;
+                else if(input == &#39;#&#39;)    sign[i][j] = false;
+                else {
+                    sign[i][j] = true;
+                    start = make_pair(i, j);
+                }
+            }
+            getchar();
+        }
+        Tra (start.first, start.second);
+        printf(&quot;%d\n&quot;, ans);
+    }
+    return 0;
+}
+
+void Tra(int x, int y) {
+    //printf (&quot;%d %d\n&quot;, x, y);
+    ++ ans;
+    tra[x][y] = true;
+    if(x + 1 &lt;= H &amp;&amp; sign[x + 1][y] &amp;&amp; !tra[x + 1][y])
+        Tra(x + 1, y);
+    if(x - 1 &gt;= 1 &amp;&amp; sign[x - 1][y] &amp;&amp; !tra[x - 1][y])
+        Tra(x - 1, y);
+    if(y + 1 &lt;= W &amp;&amp; sign[x][y + 1] &amp;&amp; !tra[x][y + 1])
+        Tra(x, y + 1);
+    if(y - 1 &gt;= 1 &amp;&amp; sign[x][y - 1] &amp;&amp; !tra[x][y - 1])
+        Tra(x, y - 1);
+}
+</code></pre><p>问题就出在3669上</p>
+<p>做法没什么好说的，预处理每个点最早被流星破坏的时间入队前判断一下当前时间是否在最早被流星破坏的时间前就可以了<br>然后注意题目中给的数据范围是流星坠落的数据范围，并不是整块地的<br>所以要再开大一点<br>然后T了3，4次<br>最后终于发现了问题<br>在每次入队的时候先把visit给标记了，要不然会多出很多很多相同的冗余元素在队里面，因为bfs和dfs不一样，bfs会一层中一次性入很多元素</p>
+<pre><code>#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#define INF 3000
+#define Maxx 300
+using namespace std;
+
+struct elem {
+    int a, b, time;
+};
+
+int m, x, y, t, ans;
+int destr[Maxx + 10][Maxx + 10];
+bool tra[Maxx + 10][Maxx + 10];
+int dx[5] = {1, -1, 0, 0, 0};
+int dy[5] = {0, 0, 1, -1, 0};
+
+int main() {
+    ans = -1;
+    scanf(&quot;%d&quot;, &amp;m);
+    for (int i = 0;i &lt; Maxx + 10;++ i)
+        for (int j = 0;j &lt; Maxx + 10;++ j)
+            destr[i][j] = INF;
+    for (int i = 1;i &lt;= m;++ i) {
+        scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;t);
+        for (int j = 0;j &lt; 5;++ j)
+        {
+            int xx = x + dx[j], yy = y + dy[j];
+            if(xx &gt;= 0 &amp;&amp; yy &gt;= 0)
+                destr[xx][yy] = min(destr[xx][yy], t);
+        }
+    }
+    if (destr[0][0] == 0) {
+        printf(&quot;-1\n&quot;);
+        return 0;
+    }
+    if (destr[0][0] == INF) {
+        printf(&quot;0\n&quot;);
+        return 0;
+    }
+    queue &lt;elem&gt; timeline;
+    elem start;    start.a = 0, start.b = 0, start.time = 0;
+    timeline.push(start);
+    while(!timeline.empty()) {
+        elem temp = timeline.front();
+        timeline.pop();
+        //tra[temp.a][temp.b] = true;
+
+        for(int i = 0;i &lt; 4;++ i) {
+            int xx = temp.a + dx[i], yy = temp.b + dy[i], tt = temp.time + 1;
+            if(xx &gt;= 0 &amp;&amp; yy &gt;= 0 &amp;&amp; destr[xx][yy] &gt; tt &amp;&amp; !tra[xx][yy]) {
+                tra[xx][yy] = true;
+                if (destr[xx][yy] == INF) {
+                    printf(&quot;%d\n&quot;, tt);
+                    return 0;
+                }
+                start.a = xx;
+                start.b = yy;
+                start.time = tt;
+                timeline.push(start);
+            }
+        }
+    }
+    printf(&quot;-1\n&quot;);
+    return 0;
+}
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> BFS </category>
+            
+            <category> DFS </category>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> BFS </tag>
+            
+            <tag> DFS </tag>
+            
+            <tag> ACM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[bbctest]]></title>
       <url>https://kaikuxy.github.io/2017/03/21/bbctest/</url>
       <content type="html"><![CDATA[<p><iframe width="400" height="500" frameborder="0" src="http://www.bbc.co.uk/programmes/p04xfxhz/player"></iframe> </p>
@@ -112,13 +268,17 @@
       <title><![CDATA[Hello World]]></title>
       <url>https://kaikuxy.github.io/2017/03/19/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+</code></pre>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
       
