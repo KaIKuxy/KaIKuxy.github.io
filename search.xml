@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[poj-2718]]></title>
+      <title><![CDATA[POJ 2718 GreedyAlgorithm STL]]></title>
       <url>https://kaikuxy.github.io/2017/03/25/poj-2718/</url>
       <content type="html"><![CDATA[<p>做了一上午的2718，差点爆炸</p>
 <p>做法一：<br>用到了STL中的next_permutation产生所有的全排列<br>要使生成的两个数差最小，两个数的位数差肯定小于等于1，产生一个排列之后在中间分开就可以</p>
@@ -226,9 +226,9 @@ int make(char* s ,int a, int b) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
             
             <tag> STL </tag>
             
@@ -393,11 +393,11 @@ int main() {
             
             <tag> POJ </tag>
             
+            <tag> ACM </tag>
+            
             <tag> BFS </tag>
             
             <tag> DFS </tag>
-            
-            <tag> ACM </tag>
             
         </tags>
         
