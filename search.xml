@@ -4,6 +4,249 @@
   
     
     <entry>
+      <title><![CDATA[poj-2718]]></title>
+      <url>https://kaikuxy.github.io/2017/03/25/poj-2718/</url>
+      <content type="html"><![CDATA[<p>做了一上午的2718，差点爆炸</p>
+<p>做法一：<br>用到了STL中的next_permutation产生所有的全排列<br>要使生成的两个数差最小，两个数的位数差肯定小于等于1，产生一个排列之后在中间分开就可以</p>
+<p>什么时候详细写一下STL里面产生全排列的写法</p>
+<pre class=" language-C++"><code class="language-C++">/*
+    next_permutation
+*/
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <cstring>
+#include <cmath>
+#include <algorithm>
+#include <time.h>
+using namespace std;
+
+int t, cnt, ans;
+char arr[10 + 1];
+char input[20];
+
+int make(int, int);
+
+int main() {
+    //clock_t start, end;
+    //freopen("output.txt", "r", stdin);
+    //freopen("out1.txt", "w", stdout);
+    scanf("%d", &t);
+    getchar();
+    while (t --) {
+        cnt = 0;
+        gets(input);
+        for (int i = 0;i < strlen(input);++ i)
+            if (input[i] != ' ')
+                arr[cnt ++] = input[i];
+        //printf("cnt: %d\n", cnt);
+        //start = clock();
+        sort(arr, arr + cnt);
+        //for (int i = 0;i < cnt;++ i)
+            //printf("%d", arr[i]);
+        ans = -1;
+        do {
+                if (arr[0] == '0' || arr[cnt / 2] == '0' && cnt > 2)
+                    continue;
+                int temp = abs(make(0, cnt / 2 - 1) - make(cnt / 2, cnt - 1));
+                ans = (ans == -1 || ans > temp) ? temp : ans;
+        } while(next_permutation(arr, arr + cnt));
+        printf("%d\n", ans);
+        //end = clock();
+        //printf("time:%f\n", (double)(end - start) / CLOCKS_PER_SEC);
+    }
+    //fclose(stdin);
+    //fclose(stdout);
+    return 0;
+}
+
+int make(int a, int b) {
+    int temp = 0;
+    for(int i = a;i <= b;++ i)
+        temp = temp * 10 + arr[i] - '0';
+    return temp;
+}
+</code></pre>
+<p>做法二：<br>分情况<br>如果是偶数的话，枚举所有两个相差最近的数当作两个生成的数的最高位，之后大数不断取剩下的数中最小的数当作下一位，小数不断取剩下的数中最大的数当作下一位，对于每个枚举更新下ans<br>如果是奇数的话，就不需要枚举最高位了，因为大的那个数最高位一定得取最小的数字，剩下和偶数做法一样不断取最小的数最大的数然后更新ans<br>然后需要注意在偶数枚举最高位的时候，不能考虑数字0，其他情况下先不考虑0到最后计算差值的时候如果0出现在第一位就和后面数字换一下位置就可以<br>我也不知道为什么贪心会WA那么多次，大概是我太菜了，把所有数据全部生成出来对比才发现问题，哎.什么时候还再回忆一下对拍咋写</p>
+<p>代码又臭又长</p>
+<pre class=" language-C++"><code class="language-C++">/*
+    greedy
+*/
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <cstring>
+#include <cmath>
+#include <algorithm>
+#include <time.h>
+using namespace std;
+
+int t, cnt, ans;
+char arr[10];
+char input[20], num1[10], num2[10];
+bool use[10];
+int cnt1, cnt2;
+
+int make(char*, int, int);
+
+int main() {
+    //clock_t start, end;
+    //freopen("output.txt", "r", stdin);
+    //freopen("out2.txt", "w", stdout);
+    scanf("%d", &t);
+    getchar();
+    while (t --) {
+        ans = -1;
+        cnt1 = cnt2 = 0;
+        cnt = 0;
+        gets(input);
+        for (int i = 0;i < strlen(input);++ i)
+            if (input[i] != ' ')
+                arr[cnt ++] = input[i];
+        //printf("cnt: %d\n", cnt);
+        //start = clock();
+        sort(arr, arr + cnt);
+        //for (int i = 0;i < cnt;++ i)
+            //printf("%d", arr[i]);
+        /*
+        do {
+                if (arr[0] == '0' || arr[cnt / 2] == '0' && cnt > 2)
+                    continue;
+                int temp = abs(make(0, cnt / 2 - 1) - make(cnt / 2, cnt - 1));
+                ans = (ans == -1 || ans > temp) ? temp : ans;
+        } while(next_permutation(arr, arr + cnt));*/
+            if(cnt == 2) {
+                printf("%d\n", abs(arr[1] - arr[0]));
+                continue ;
+            }
+
+            int Min = 10000;
+
+            if(cnt % 2) {
+                int temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2 + 1;
+                for (int i = 0;i < cnt && temp;++ i) {
+                    num1[cnt1 ++] = arr[i];
+                    -- temp;
+                }
+                temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
+                for (int i = cnt - 1;i >= 0 && temp;-- i) {
+                    num2[cnt2 ++] = arr[i];
+                    -- temp;
+                }
+                /*printf("Bigger: ");
+                for (int j = 0;j < cnt1;++ j)
+                    printf("%c ", num1[j]);
+                printf("\n");
+                printf("Smaller: ");
+                for (int j = 0;j < cnt2;++ j)
+                    printf("%c ", num2[j]);
+                printf("\n");*/
+                temp = abs(make(num1, 0, cnt1 - 1) - make(num2, 0, cnt2 - 1));
+                ans = temp;
+            }
+            else {
+                for (int i = 0;i < cnt - 1;++ i)
+                    if (arr[i] != '0')
+                        Min = min(Min, arr[i + 1] - arr[i]);
+                for (int i = 0;i < cnt - 1;++ i)
+                    if (arr[i] != '0') {
+                        if (Min == arr[i + 1] - arr[i])
+                        {
+                            cnt1 = cnt2 = 0;
+                            int temp;
+                            memset(use, 0, sizeof(use));
+                            use[i + 1] = use[i] = true;
+                            num1[cnt1 ++] = arr[i + 1]; // bigger
+                            num2[cnt2 ++] = arr[i]; // smaller
+
+                            //printf("cnt1: %d    cnt2: %d\n", cnt1, cnt2);
+
+                            temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
+                            for (int j = 0;j < cnt && temp;++ j)
+                                if (!use[j]) {
+                                    num1[cnt1 ++] = arr[j];
+                                    -- temp;
+                                }
+                            temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
+                            for (int j = cnt - 1;j >= 0 && temp;-- j)
+                                if (!use[j]) {
+                                    num2[cnt2 ++] = arr[j];
+                                -- temp;
+                                }
+                            /*for (int j = 0;j < cnt1;++ j)
+                            printf("%c ", num1[j]);
+                            printf("\n");
+                            for (int j = 0;j < cnt2;++ j)
+                            printf("%c ", num2[j]);
+                            printf("\n");*/
+                            temp = abs(make(num1, 0, cnt1 - 1) - make(num2, 0, cnt2 - 1));
+                            //printf ("%d\n", temp);
+                            ans = (ans == -1 || ans > temp) ? temp : ans;
+                        }
+                    }
+            }
+        printf("%d\n", ans);
+        //end = clock();
+        //printf("time:%f\n", (double)(end - start) / CLOCKS_PER_SEC);
+    }
+    //fclose(stdin);
+    //fclose(stdout);
+    return 0;
+}
+
+int make(char* s ,int a, int b) {
+    int temp = 0;
+    //printf("%c %c\n", *(s + a), *(s + a + 1));
+    if(b - a > 0 && *(s + a) == '0') {
+        char tempc = *(s + a);
+        *(s + a) = *(s + a + 1);
+        *(s + a + 1) = tempc;
+    }
+    for(int i = a;i <= b;++ i)
+        temp = temp * 10 + *(s + i) - '0';
+    return temp;
+}
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> GreedyAlgorithm </category>
+            
+            <category> ACM </category>
+            
+            <category> STL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> ACM </tag>
+            
+            <tag> GreedyAlgorithm </tag>
+            
+            <tag> STL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Haru!!]]></title>
+      <url>https://kaikuxy.github.io/2017/03/23/Haru/</url>
+      <content type="html"><![CDATA[<p>HARU!!!!!!</p>
+<p><img src="/images/haru.gif" alt="这里写图片描述"></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[POJ 1979 3669 BFS DFS]]></title>
       <url>https://kaikuxy.github.io/2017/03/23/poj-1979-3669/</url>
       <content type="html"><![CDATA[<p>一道DFS一道BFS</p>

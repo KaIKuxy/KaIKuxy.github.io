@@ -372,7 +372,7 @@ DFS无脑扫就可以了
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">5</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">7</span></a>
             </ul>
         </li>
         
@@ -390,7 +390,7 @@ DFS无脑扫就可以了
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/POJ/">POJ<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/">BFS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/DFS/">DFS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/DFS/ACM/">ACM<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/">数据结构<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/组合数学/">组合数学<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/POJ/">POJ<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/">BFS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/DFS/">DFS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/BFS/DFS/ACM/">ACM<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/GreedyAlgorithm/">GreedyAlgorithm<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/GreedyAlgorithm/ACM/">ACM<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/POJ/GreedyAlgorithm/ACM/STL/">STL<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/">数据结构<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/组合数学/">组合数学<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -709,7 +709,22 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                 </main>
-            </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-        </body>
+            </div>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
     
 </html>
