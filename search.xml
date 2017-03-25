@@ -226,9 +226,9 @@ int make(char* s ,int a, int b) {
             
             <tag> POJ </tag>
             
-            <tag> GreedyAlgorithm </tag>
-            
             <tag> ACM </tag>
+            
+            <tag> GreedyAlgorithm </tag>
             
             <tag> STL </tag>
             
@@ -393,11 +393,11 @@ int main() {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> BFS </tag>
             
             <tag> DFS </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
