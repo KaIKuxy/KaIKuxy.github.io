@@ -10,7 +10,7 @@
     
     <title>
         
-            bbctest | 
+            今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题 | 
         
         Hexo
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="KaIKu Yu Xia">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,MachineLearning">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://kaikuxy.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="bbctest | Hexo">
+    <meta property="og:title" content="今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题 | Hexo">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="MachineLearning"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -259,7 +259,7 @@
         
     
             <p class="article-headline-p">
-                bbctest
+                今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题
             </p>
         </div>
 
@@ -278,7 +278,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>KaIKu Yu Xia</strong>
-        <span>3月 21, 2017</span>
+        <span>3月 26, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -302,7 +302,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/MachineLearning/">MachineLearning</a>
     </ul>
     
 
@@ -329,7 +329,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=bbctest&url=https://kaikuxy.github.io//2017/03/21/bbctest/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题&url=https://kaikuxy.github.io//2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -338,7 +338,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=bbctest&url=https://kaikuxy.github.io//2017/03/21/bbctest/index.html&via=KaIKu Yu Xia" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题&url=https://kaikuxy.github.io//2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/index.html&via=KaIKu Yu Xia" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -347,7 +347,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://kaikuxy.github.io//2017/03/21/bbctest/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://kaikuxy.github.io//2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -356,7 +356,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://kaikuxy.github.io//2017/03/21/bbctest/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://kaikuxy.github.io//2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -380,7 +380,21 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><iframe width="400" height="500" frameborder="0" src="http://www.bbc.co.uk/programmes/p04xfxhz/player"></iframe> </p>
+        <p>知道Precision和Recall是什么但是还是有点在区别的时候犯迷糊，加上这次的题目出的感觉有点模糊，有些描述有点模棱两可</p>
+<p>用通俗点的话来描述Precision和Recall分别就是</p>
+<p>Precision：判断的准确率，在你判断为真的数据中事实上就是真的比例</p>
+<p>Recall：在所有为真的数据中你判断为真的比例,也就是你没有漏判的程度</p>
+<p><strong>!!一般的，我们将数据中出现少的那一种情况定义为真!!</strong></p>
+<p>也就是，假设我们使用了logistic regression，最后给的h(x)在[0, 1]，如果我们想更准确判断，那么会有更高的Precision，以及更低的Recall；而如果我们不想漏过某个为真的数据，那么会有更高的Recall，以及更低的Precision</p>
+<p>因为我们取得的数据有可能会是skewed class，比如数据中99%的患者没有得癌症，而只有1%的患者得了癌症，这种情况下，单单使用accuracy来衡量某个学习算法是不好的，举一个反例就是我们可以让算法直接判断所有患者都没有得癌症，这样得到的accuracy达到了99%，但是这并不是我们想要的</p>
+<p>因此我们使用F1score = (2 <em> Precision </em> Recall) / (Precision + Recall)来衡量</p>
+<p>用上面那个例子，99%的患者没有得癌症</p>
+<p>1&gt;   假设我们判断所有的患者都得了癌症，我们得到了100%的Recall因为我们没有漏过任何一个病例，另一方面，我们得到了1%的Precision，因为实际上只有1%的患者得了癌症，而总准确率为0.01</p>
+<p>2&gt;   假设我们判断所有的患者都没有得癌症，我们得到了0%的Recall因为我们漏掉了所有病例，另一方面，我们得到了0%的Precision因为我们所有判断得癌症的准确率是0，而我们得总准确率却有0.99</p>
+<p>我们在用F1score衡量的时候，会希望F1score越大越好。在最理想情况下，我们准确且未漏判所有得了癌症的患者，这个时候，我们的F1score为</p>
+<p>F1score = (2 <em> 1 </em> 1) / (1 + 1) = 1</p>
+<p>这么理了一下感觉清晰些了</p>
+<p>PS：什么时候把前面学的也理一下呢</p>
 
     
 
@@ -401,7 +415,7 @@
 <script>
     queue.offer(function() {
             var disqus_config = function () {
-                this.page.url = 'https://kaikuxy.github.io/2017/03/21/bbctest/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.url = 'https://kaikuxy.github.io/2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/index.html';  // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
             };
 
@@ -432,21 +446,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/23/poj-1979-3669/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/03/21/math/" id="post_nav-older" class="next-content">
+        <a href="/2017/03/26/Debate-Interest-and-Work/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
