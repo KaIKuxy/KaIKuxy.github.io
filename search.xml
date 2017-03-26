@@ -4,6 +4,97 @@
   
     
     <entry>
+      <title><![CDATA[POJ 2376 GreedyAlgorithm]]></title>
+      <url>https://kaikuxy.github.io/2017/03/26/poj-2376/</url>
+      <content type="html"><![CDATA[<p>贪心</p>
+<p>l为第一关键字，r为第二关键字排序</p>
+<p>每次选择当前l合法的有最远的r的区间</p>
+<p>很多，很多注意事项</p>
+<ol>
+<li>区间不需要覆盖，…, r] [r+1, … 就合法</li>
+<li>数据给的最远r可能大于T</li>
+<li>数据给的最近l可能大于1</li>
+<li>可能存在[1, 1] [1, 2] [1, 3] …. 这种情况，所以不要直接先把第一个区间取了，特判到死</li>
+</ol>
+<p>第一版代码又臭又长，我也不知道为什么过这么久没写代码会用while这种东西，还多出很多毫无意义的变量</p>
+<p>教训：</p>
+<ol>
+<li>特判会让自己的代码又臭又长，还难读，能用一个循环绝不在开头加特判处理初始情况，纯属没事找事做</li>
+<li>不要开毫无意义的变量，想想怎么样可以简单表达</li>
+<li>读题读题读题读题读题读题读题</li>
+<li>找反例不是让自己加特判的，是让自己的代码更普遍化，通用更多数据</li>
+</ol>
+<pre class=" language-C++"><code class="language-C++">#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#define Maxn 25000
+using namespace std;
+struct interval {
+    int start, end;
+}inter[Maxn + 10];
+int N, T, ans;
+bool cmp(interval, interval);
+int main() {
+    scanf("%d%d", &N, &T);
+    for (int i = 0;i < N;++ i)
+        scanf("%d%d", &inter[i].start, &inter[i].end);
+    sort(inter, inter + N, cmp);
+    /*for (int i = 0;i < N;++ i)
+        printf("%d %d\n", inter[i].start, inter[i].end);*/
+    int iter = 0, start, end = 0;
+    while (end < T) {
+        start = end + 1;
+        for (int i = iter;i < N;++ i)
+            if (inter[i].start <= start)
+                end = max(end, inter[i].end);
+            else {
+                iter = i;
+                break;
+            }
+        if (start > end) {
+            ans = -1;
+            break;
+        }
+        ++ ans;
+    }
+    printf("%d\n", ans);
+    return 0;
+}
+bool cmp(interval x, interval y) {
+    if(x.start != y.start)
+        return x.start < y.start;
+    else
+        return x.end < y.end;
+}
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> GreedyAlgorithm </category>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> ACM </tag>
+            
+            <tag> GreedyAlgorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[POJ 2718 GreedyAlgorithm STL]]></title>
       <url>https://kaikuxy.github.io/2017/03/25/poj-2718/</url>
       <content type="html"><![CDATA[<p>做了一上午的2718，差点爆炸</p>
