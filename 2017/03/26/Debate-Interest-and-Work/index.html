@@ -10,7 +10,7 @@
     
     <title>
         
-            分类: GreedyAlgorithm | 
+            趣味と仕事、どちらが大事 | 
         
         Hexo
     </title>
@@ -48,7 +48,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://kaikuxy.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分类: GreedyAlgorithm | Hexo">
+    <meta property="og:title" content="趣味と仕事、どちらが大事 | Hexo">
     <meta property="og:description" content="null">
     
 
@@ -203,156 +203,259 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
         
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Pure Thumbnail -->
-            <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#2196F3 !important">
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#2196F3 !important">
+        
+    
+            <p class="article-headline-p">
+                趣味と仕事、どちらが大事
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar2.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>KaIKu Yu Xia</strong>
+        <span>3月 26, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
         
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/26/poj-2376/">POJ 2376 GreedyAlgorithm</a></p>
-    </div>
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=趣味と仕事、どちらが大事&url=https://kaikuxy.github.io//2017/03/26/Debate-Interest-and-Work/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            贪心
-l为第一关键字，r为第二关键字排序
-每次选择当前l合法的有最远的r的区间
-很多，很多注意事项
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=趣味と仕事、どちらが大事&url=https://kaikuxy.github.io//2017/03/26/Debate-Interest-and-Work/index.html&via=KaIKu Yu Xia" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
 
-区间不需要覆盖，…,...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/26/poj-2376/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar2.png" width="44px" height="44px" alt="KaIKu Yu Xia's avatar">
-            </div>
-            <div>
-                <strong>KaIKu Yu Xia</strong>
-                <span>3月 26, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/POJ/">POJ</a>, <a class="post_category-link" href="/categories/POJ/GreedyAlgorithm/">GreedyAlgorithm</a>, <a class="post_category-link" href="/categories/POJ/GreedyAlgorithm/ACM/">ACM</a>
-            </span>
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://kaikuxy.github.io//2017/03/26/Debate-Interest-and-Work/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
 
-            
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://kaikuxy.github.io//2017/03/26/Debate-Interest-and-Work/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
 </div>
 
-        
-        
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Pure Thumbnail -->
-            <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#2196F3 !important">
-        
+        <p>　生活するために、仕事をしなければならない。仕事がないと、生きるための金もない、生活するのも問題の状況で、趣味を発展する余裕はあるのか。そもそも、仕事ということは、生計を立てるために、自分の生活をより楽しくより幸福になるために、必要なことです。趣味を見つけて、愛し、発展し続けることもその「より楽しく、より幸福になる」にあるのです。つまり、仕事が趣味の存在を支持するのです。</p>
+<p>　WIKIで、趣味という単語はこのように説明するのです：</p>
+<pre><code>趣味は、以下の二つの意味を持つ。
+１．人間が自由時間（生理的必要時間と労働時間を除いた時間、余暇）に、好んで習慣的に繰り返しおこなう行為、事柄やその対象のこと。
+２．物の持つ味わい・おもむきを指し、それを鑑賞しうる能力（美しいものや面白いものについての好みや嗜好）のこと。
+</code></pre><p>　つまり、趣味は、仕事が終わった後、時間があったらできるのです。このような説明方も、仕事の方が大事だということを私たちに教えてくれたのです。</p>
+
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/25/poj-2718/">POJ 2718 GreedyAlgorithm STL</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            做了一上午的2718，差点爆炸
-做法一：用到了STL中的next_permutation产生所有的全排列要使生成的两个数差最小，两个数的位数差肯定小于等于1，...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/25/poj-2718/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar2.png" width="44px" height="44px" alt="KaIKu Yu Xia's avatar">
-            </div>
-            <div>
-                <strong>KaIKu Yu Xia</strong>
-                <span>3月 25, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/POJ/">POJ</a>, <a class="post_category-link" href="/categories/POJ/GreedyAlgorithm/">GreedyAlgorithm</a>, <a class="post_category-link" href="/categories/POJ/GreedyAlgorithm/ACM/">ACM</a>, <a class="post_category-link" href="/categories/POJ/GreedyAlgorithm/ACM/STL/">STL</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    
 </div>
 
-        
-        
-        
-    
 
-    
+                
 
-    
-        <script>
-    var randomNum;
+                <!-- Post Comments -->
+                
+                    
 
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
 
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    queue.offer(function() {
+            var disqus_config = function () {
+                this.page.url = 'https://kaikuxy.github.io/2017/03/26/Debate-Interest-and-Work/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
 
-        locatePost = locatePost.next();
-    }
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//kaikuxy.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
 </script>
 
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
     
-</div>
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/26/poj-2376/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
