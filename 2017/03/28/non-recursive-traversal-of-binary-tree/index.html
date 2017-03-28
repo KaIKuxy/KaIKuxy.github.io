@@ -10,7 +10,7 @@
     
     <title>
         
-            标签: BFS | 
+            non-recursive traversal of binary tree | 
         
         Hexo
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="KaIKu Yu Xia">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,数据结构">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://kaikuxy.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: BFS | Hexo">
+    <meta property="og:title" content="non-recursive traversal of binary tree | Hexo">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="数据结构"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -203,96 +203,331 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
         
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Pure Thumbnail -->
-            <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#2196F3 !important">
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#2196F3 !important">
+        
+    
+            <p class="article-headline-p">
+                non-recursive traversal of binary tree
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar2.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>KaIKu Yu Xia</strong>
+        <span>3月 28, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/数据结构/">数据结构</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
         
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/23/poj-1979-3669/">POJ 1979 3669 BFS DFS</a></p>
-    </div>
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=non-recursive traversal of binary tree&url=https://kaikuxy.github.io//2017/03/28/non-recursive-traversal-of-binary-tree/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            一道DFS一道BFS
-1979:
-DFS无脑扫就可以了
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=non-recursive traversal of binary tree&url=https://kaikuxy.github.io//2017/03/28/non-recursive-traversal-of-binary-tree/index.html&via=KaIKu Yu Xia" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/23/poj-1979-3669/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar2.png" width="44px" height="44px" alt="KaIKu Yu Xia's avatar">
-            </div>
-            <div>
-                <strong>KaIKu Yu Xia</strong>
-                <span>3月 23, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/POJ/">POJ</a>, <a class="post_category-link" href="/categories/POJ/BFS/">BFS</a>, <a class="post_category-link" href="/categories/POJ/BFS/DFS/">DFS</a>, <a class="post_category-link" href="/categories/POJ/BFS/DFS/ACM/">ACM</a>
-            </span>
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://kaikuxy.github.io//2017/03/28/non-recursive-traversal-of-binary-tree/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
 
-            
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://kaikuxy.github.io//2017/03/28/non-recursive-traversal-of-binary-tree/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
 </div>
 
-        
-        
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
+        <p>以前经常说：</p>
+<p>系统栈爆了怎么办？</p>
+<p>手写啊！！</p>
+<p>然而并没有写过一次</p>
+<p>这次数据结构课介绍了非递归的二叉树遍历算法，后序还没讲，先写了再说</p>
+<p>先序遍历：</p>
+<p>1.我的直观想法是先把右子树压进去，再把左子树压进去</p>
+<p>2.然而书上给的做法有点不一样，是先压左子树压到底，弹出的时候把当前的右子树给压进去。事实上在先序遍历上来说这两种做法没什么区别，我的想法相当于在压左子树之前就直接先把右子树压进去了</p>
+<p>中序遍历：</p>
+<p>中序遍历的时候我的做法不是那么管用了，因为先序遍历根节点最先访问，而中序需要左子树弹回来才能访问根节点，所以必须得用类似上面做法2的一样的思路</p>
+<p>后序遍历：</p>
+<p>可以和先序遍历一样一次性把右左子树压进去，在访问根节点前判一下上一个访问的是不是根节点的左右儿子，也就是说是不是从访问完左右儿子之后弹回来的，或者根本没有左右儿子，满足两种情况之一才能将这个点弹出来并访问，同时更新pre为这个根节点</p>
+<pre class=" language-C++"><code class="language-C++">void preOrder1(BiTree root) {
+    stack <BiTree> s;
+    BiTree p = root;
+    while (p != NULL || !s.empty()) {
+        while (p != NULL) {
+            visit(p);
+            s.push(p);    //prepare the traversal for the p's right child
+            p = p -> lchild;
+        }
+        if (!s.empty()) {
+            p = s.top();    //get the node
+            s.pop();
+            p = p -> rchild;    // turn to right child
+        }
     }
+}
+
+void preOrder2(BiTree root) {
+    stack <BiTree> s;
+    BiTree p = root;
+    while (!s.empty()) {
+        vist(p = s.top());
+        s.pop();
+        if (p -> rchild != NULL)
+            s.push(p -> rchild);
+        if (p -> lchild != NULL)
+            s.push(p -> lchild);
+    }
+}
+
+void inOrder(BiTree root) {
+    stack <BiTree> s;
+    BiTree p = root;
+    while (p != NULL || !s.empty()) {
+        while (p != NULL) {
+            s.push(p);    //prepare the traversal for the p's right child
+            p = p -> lchild;
+        }
+        if (!s.empty()) {
+            visit(p = s.top());
+            s.pop();
+            push(s.rchild);
+        }
+    }
+}
+
+void postOrder(BiTree root) {
+    stack <BiTree> s;
+    BiTree p = root, pre = NULL;
+    s.push(root);
+    while (!s.empty()) {
+        p = s.top();
+        if ((p -> lchild == NULL && p -> rchild == NULL) || (pre != NULL && (pre == p -> lchild || pre == p -> rchild))) {     // come from child node
+            visit(p);
+            s.pop();
+            pre = p;
+        }
+        else {
+            if (p -> rchild != NULL)
+                s.push(p -> rchild);
+                if (p -> lchild != NULL)
+                    s.push(p -> lchild);
+        }
+    }
+}
+</code></pre>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    queue.offer(function() {
+            var disqus_config = function () {
+                this.page.url = 'https://kaikuxy.github.io/2017/03/28/non-recursive-traversal-of-binary-tree/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//kaikuxy.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
 </script>
 
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
     
-</div>
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/26/今天的Coursera测验做了三次才对这说明对Precision和Recall的理解有问题/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -448,6 +683,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
