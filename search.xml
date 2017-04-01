@@ -147,7 +147,7 @@ void work(int depth) {
             }
 }
 </code></pre>
-<p>昨天晚上结束AB题都过了的大概150多人吧，C题过了的只有7个人。。。D题过了的只有6个。。。现在也只有11和11人过了。。。大概使神们都不屑于做</p>
+<p>昨天晚上结束AB题都过了的大概150多人吧，C题过了的只有7个人。。。D题过了的只有6个。。。现在也只有11和11人过了。。。大概是神们都不屑于做</p>
 <p>题外话，在网上看这个比赛往届消息的时候，发现微软远程Skype面试中需要在共享白板上直接写代码。</p>
 <p>在面试官眼皮底下写啊！！！感觉自己很慌，压力极大。还有很长路要走，哎。</p>
 ]]></content>
@@ -397,9 +397,9 @@ bool cmp(interval x, interval y) {
             
             <tag> POJ </tag>
             
-            <tag> GreedyAlgorithm </tag>
-            
             <tag> ACM </tag>
+            
+            <tag> GreedyAlgorithm </tag>
             
         </tags>
         
@@ -628,9 +628,9 @@ int make(char* s ,int a, int b) {
             
             <tag> POJ </tag>
             
-            <tag> GreedyAlgorithm </tag>
-            
             <tag> ACM </tag>
+            
+            <tag> GreedyAlgorithm </tag>
             
             <tag> STL </tag>
             
@@ -795,11 +795,11 @@ int main() {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> BFS </tag>
             
             <tag> DFS </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
