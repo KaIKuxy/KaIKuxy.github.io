@@ -4,6 +4,170 @@
   
     
     <entry>
+      <title><![CDATA[微软2017年预科生计划在线编程笔试_上]]></title>
+      <url>https://kaikuxy.github.io/2017/04/01/%E5%BE%AE%E8%BD%AF2017%E5%B9%B4%E9%A2%84%E7%A7%91%E7%94%9F%E8%AE%A1%E5%88%92%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AF%95-%E4%B8%8A/</url>
+      <content type="html"><![CDATA[<p>昨天晚上进行了微软2017预科生计划的在线编程笔试，然而之前并没有报名加上还有第二天的セリフ没做完于是没当时就做。<br>今天晚上仔细看了下，A了前两题，时间大概和现场的两个半小时差不多（自己还在听歌嗨）<br>后面两题明天再看吧。。。C题贼长，看都不想看</p>
+<h3 id="ProblemA"><a href="#ProblemA" class="headerlink" title="ProblemA"></a>ProblemA</h3><p>题目链接在这里：<a href="http://hihocoder.com/problemset/problem/1489" target="_blank" rel="external">ProblemA</a></p>
+<p>如果没有WA一次我根本没有意识到他每次抽中legendary item之后的起始概率是本次抽中开始的概率的1/2，而不是最开始的P的1/2，因为我把2上面那个I给无视掉了，而且这次又没有仔细看题。</p>
+<p>题意大概就是你需要抽出来N张卡，起始的概率是P%，每次没有抽中会增加Q%的概率。在抽中一次后，概率会被重置为P/(2^i)(i是已经抽到的个数)。求抽中所有卡所需要次数的期望值。</p>
+<ol>
+<li>数据范围1 ≤ Q ≤ 100。那么每次一定可以在100次以内抽中卡。</li>
+<li>每次抽卡可以当作独立事件计算期望最后加起来。</li>
+<li>初始概率不断会被除以2向下取整，那么经过若干次之后初始概率一定会固定在0不动，最坏情况P初始等于100，这种情况下7次就会使初始概率固定在0。7次之后的卡就可以只需要计算一次了,数据范围里面N再大也没啥关系了。</li>
+</ol>
+<pre class=" language-C++"><code class="language-C++">#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#define Maxn 100
+using namespace std;
+int P, Q, N;
+int main() {
+    scanf("%d%d%d", &P, &Q, &N);
+    int cnt;
+    double ans = 0, pnow, tempp, tempans;
+    while (N) {
+        cnt = 0;
+        pnow = P / 100.0, tempp = 1.0, tempans = 0.0;
+        while (true) {
+            tempans += (++ cnt) * tempp * pnow;
+            if (pnow == 1.0)
+                break;
+            tempp = tempp * (1.0 - pnow);
+            pnow += Q / 100.0;
+            if (pnow > 1.0)
+                pnow = 1.0;
+        }
+        ans += tempans;
+        -- N;
+        if (P == 0)
+            break;
+        P = P / 2;
+    }
+    if (N)
+        ans = ans + N * tempans;
+    printf ("%.2lf\n", ans);
+    return 0;
+}
+</code></pre>
+<p>因为没看清题浪费了好多时间。。。</p>
+<h3 id="ProblemB"><a href="#ProblemB" class="headerlink" title="ProblemB"></a>ProblemB</h3><p>题目链接在这里：<a href="http://hihocoder.com/problemset/problem/1490" target="_blank" rel="external">ProblemB</a></p>
+<p>一个n个点的树，现在不知道树的具体样子，只知道：</p>
+<ol>
+<li>哪些结点是叶子结点</li>
+<li>每两个叶子结点之间的距离</li>
+<li>每个结点的深度</li>
+<li>每层从左到右结点的编号</li>
+</ol>
+<p>现在需要知道每个结点的父亲是谁</p>
+<p>做法：</p>
+<p>从最后一层开始处理，很显然的性质就是如果两个结点同父亲，那么他们两个的距离就是2，否则两个节点的距离大于2。</p>
+<p>因为我们知道每层从左到右的结点分别是什么，那么对于每层结点从左到右，和前一个结点的距离为2的结点的父亲就是前一个结点的父亲；和前一个点的距离大于2，属于新的一个父亲，如此依次更新。</p>
+<p>更新完这一层的结点之后，需要更新结点的距离。</p>
+<p>题目只给了叶子结点的距离，每次更新完一层结点的父亲之后，该层两两结点的父亲之间的距离就是两个结点距离-2，而对于深度小于当前层的叶子结点，其与该层结点父亲的距离就是与此结点的距离-1。为什么这样不说了，画出来很显然。</p>
+<p>一A</p>
+<pre class=" language-C++"><code class="language-C++">#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#define Maxn 100
+using namespace std;
+
+int n, m, k;
+int num_of_depth[Maxn + 10];
+int Deep[Maxn + 10];
+int node[Maxn + 10][Maxn + 10];
+int dis[Maxn + 10][Maxn + 10];
+int parent[Maxn + 10];
+int leave[Maxn + 10];
+bool isleave[Maxn + 10];
+
+void init();
+void work(int);
+
+int main() {
+    init();
+    for (int t = m;t > 1;-- t)
+        work(t);
+    printf("%d", parent[1]);
+    for (int i = 2;i <= n;++ i)
+        printf(" %d", parent[i]);
+    printf("\n");
+    return 0;
+}
+
+void init() {
+    scanf("%d%d%d", &n, &m, &k);
+    for (int i = 1;i <= m;++ i)
+        scanf("%d", &num_of_depth[i]);
+    //printf("num_of_depth\n");
+    for (int i = 1;i <= m;++ i)
+        for (int j = 1;j <= num_of_depth[i];++ j)
+        {
+            scanf("%d", &node[i][j]);
+            Deep[node[i][j]] = i;
+        }
+    //printf("node\n");
+    for (int i = 1;i <= k;++ i) {
+        int temp;
+        scanf("%d", &leave[i]);
+        isleave[leave[i]] = true;
+    }
+    //printf("leave\n");
+    for (int i = 1;i <= k;++ i)
+        for (int j = 1;j <= k;++ j)
+            scanf("%d", &dis[leave[i]][leave[j]]);
+}
+
+void work(int depth) {
+    int start = 0, pre = 0;
+    for (int i = 1;i <= num_of_depth[depth];++ i) {
+        if (i == 1 || dis[node[depth][i]][node[depth][i - 1]] != 2) {
+            //printf("%d != %d\n", node[depth][i], node[depth][i - 1]);
+            ++ start;
+            while (isleave[node[depth - 1][start]])
+                ++ start;
+            parent[node[depth][i]] = node[depth - 1][start];
+            //printf("%d parent: %d\n", node[depth][i], node[depth - 1][start]);
+        }
+        if (dis[node[depth][i]][node[depth][i - 1]] == 2)
+            parent[node[depth][i]] = parent[node[depth][i - 1]];
+    }
+    for (int i = 1;i <= num_of_depth[depth];++ i)
+        for (int j = 1;j <= num_of_depth[depth];++ j)
+        {
+            dis[parent[node[depth][i]]][parent[node[depth][j]]] = dis[node[depth][i]][node[depth][j]] - 2;
+            /*if (node[depth][i] < node[depth][j])
+                printf("update %d %d parent: %d %d %d\n", node[depth][i], node[depth][j], parent[node[depth][i]], parent[node[depth][j]], dis[parent[node[depth][i]]][parent[node[depth][j]]]);*/
+        }
+    for (int i = 1;i <= k;++ i)
+        if (Deep[leave[i]] < depth)
+            for (int j = 1;j <= num_of_depth[depth];++ j) {
+                dis[leave[i]][parent[node[depth][j]]] = dis[leave[i]][node[depth][j]] - 1;
+                dis[parent[node[depth][j]]][leave[i]] = dis[leave[i]][parent[node[depth][j]]];
+            }
+}
+</code></pre>
+<p>昨天晚上结束AB题都过了的大概150多人吧，C题过了的只有7个人。。。D题过了的只有6个。。。现在也只有11和11人过了。。。大概使神们都不屑于做</p>
+<p>题外话，在网上看这个比赛往届消息的时候，发现微软远程Skype面试中需要在共享白板上直接写代码。</p>
+<p>在面试官眼皮底下写啊！！！感觉自己很慌，压力极大。还有很长路要走，哎。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ACM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[non-recursive traversal of binary tree]]></title>
       <url>https://kaikuxy.github.io/2017/03/28/non-recursive-traversal-of-binary-tree/</url>
       <content type="html"><![CDATA[<p>以前经常说：</p>
