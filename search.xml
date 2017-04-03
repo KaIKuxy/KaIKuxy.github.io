@@ -168,11 +168,11 @@ bool cmp(Interval a, Interval b) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
             
             <tag> PriorityQueue </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
@@ -572,9 +572,9 @@ bool cmp(interval x, interval y) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
@@ -803,9 +803,9 @@ int make(char* s ,int a, int b) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
             
             <tag> STL </tag>
             
@@ -970,11 +970,11 @@ int main() {
             
             <tag> POJ </tag>
             
+            <tag> ACM </tag>
+            
             <tag> BFS </tag>
             
             <tag> DFS </tag>
-            
-            <tag> ACM </tag>
             
         </tags>
         
