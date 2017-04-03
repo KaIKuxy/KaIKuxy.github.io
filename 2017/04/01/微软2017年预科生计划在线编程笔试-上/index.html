@@ -180,9 +180,9 @@
     <!-- Bing Background -->
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+</head>
 
 
     
@@ -387,15 +387,15 @@
 <li>每次抽卡可以当作独立事件计算期望最后加起来。</li>
 <li>初始概率不断会被除以2向下取整，那么经过若干次之后初始概率一定会固定在0不动，最坏情况P初始等于100，这种情况下7次就会使初始概率固定在0。7次之后的卡就可以只需要计算一次了,数据范围里面N再大也没啥关系了。</li>
 </ol>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
 #define Maxn 100
 using namespace std;
 int P, Q, N;
 int main() {
-    scanf("%d%d%d", &P, &Q, &N);
+    scanf(&quot;%d%d%d&quot;, &amp;P, &amp;Q, &amp;N);
     int cnt;
     double ans = 0, pnow, tempp, tempans;
     while (N) {
@@ -407,7 +407,7 @@ int main() {
                 break;
             tempp = tempp * (1.0 - pnow);
             pnow += Q / 100.0;
-            if (pnow > 1.0)
+            if (pnow &gt; 1.0)
                 pnow = 1.0;
         }
         ans += tempans;
@@ -418,7 +418,7 @@ int main() {
     }
     if (N)
         ans = ans + N * tempans;
-    printf ("%.2lf\n", ans);
+    printf (&quot;%.2lf\n&quot;, ans);
     return 0;
 }
 </code></pre>
@@ -438,9 +438,9 @@ int main() {
 <p>更新完这一层的结点之后，需要更新结点的距离。</p>
 <p>题目只给了叶子结点的距离，每次更新完一层结点的父亲之后，该层两两结点的父亲之间的距离就是两个结点距离-2，而对于深度小于当前层的叶子结点，其与该层结点父亲的距离就是与此结点的距离-1。为什么这样不说了，画出来很显然。</p>
 <p>一A</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
 #define Maxn 100
 using namespace std;
 
@@ -458,62 +458,62 @@ void work(int);
 
 int main() {
     init();
-    for (int t = m;t > 1;-- t)
+    for (int t = m;t &gt; 1;-- t)
         work(t);
-    printf("%d", parent[1]);
-    for (int i = 2;i <= n;++ i)
-        printf(" %d", parent[i]);
-    printf("\n");
+    printf(&quot;%d&quot;, parent[1]);
+    for (int i = 2;i &lt;= n;++ i)
+        printf(&quot; %d&quot;, parent[i]);
+    printf(&quot;\n&quot;);
     return 0;
 }
 
 void init() {
-    scanf("%d%d%d", &n, &m, &k);
-    for (int i = 1;i <= m;++ i)
-        scanf("%d", &num_of_depth[i]);
-    //printf("num_of_depth\n");
-    for (int i = 1;i <= m;++ i)
-        for (int j = 1;j <= num_of_depth[i];++ j)
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;k);
+    for (int i = 1;i &lt;= m;++ i)
+        scanf(&quot;%d&quot;, &amp;num_of_depth[i]);
+    //printf(&quot;num_of_depth\n&quot;);
+    for (int i = 1;i &lt;= m;++ i)
+        for (int j = 1;j &lt;= num_of_depth[i];++ j)
         {
-            scanf("%d", &node[i][j]);
+            scanf(&quot;%d&quot;, &amp;node[i][j]);
             Deep[node[i][j]] = i;
         }
-    //printf("node\n");
-    for (int i = 1;i <= k;++ i) {
+    //printf(&quot;node\n&quot;);
+    for (int i = 1;i &lt;= k;++ i) {
         int temp;
-        scanf("%d", &leave[i]);
+        scanf(&quot;%d&quot;, &amp;leave[i]);
         isleave[leave[i]] = true;
     }
-    //printf("leave\n");
-    for (int i = 1;i <= k;++ i)
-        for (int j = 1;j <= k;++ j)
-            scanf("%d", &dis[leave[i]][leave[j]]);
+    //printf(&quot;leave\n&quot;);
+    for (int i = 1;i &lt;= k;++ i)
+        for (int j = 1;j &lt;= k;++ j)
+            scanf(&quot;%d&quot;, &amp;dis[leave[i]][leave[j]]);
 }
 
 void work(int depth) {
     int start = 0, pre = 0;
-    for (int i = 1;i <= num_of_depth[depth];++ i) {
+    for (int i = 1;i &lt;= num_of_depth[depth];++ i) {
         if (i == 1 || dis[node[depth][i]][node[depth][i - 1]] != 2) {
-            //printf("%d != %d\n", node[depth][i], node[depth][i - 1]);
+            //printf(&quot;%d != %d\n&quot;, node[depth][i], node[depth][i - 1]);
             ++ start;
             while (isleave[node[depth - 1][start]])
                 ++ start;
             parent[node[depth][i]] = node[depth - 1][start];
-            //printf("%d parent: %d\n", node[depth][i], node[depth - 1][start]);
+            //printf(&quot;%d parent: %d\n&quot;, node[depth][i], node[depth - 1][start]);
         }
         if (dis[node[depth][i]][node[depth][i - 1]] == 2)
             parent[node[depth][i]] = parent[node[depth][i - 1]];
     }
-    for (int i = 1;i <= num_of_depth[depth];++ i)
-        for (int j = 1;j <= num_of_depth[depth];++ j)
+    for (int i = 1;i &lt;= num_of_depth[depth];++ i)
+        for (int j = 1;j &lt;= num_of_depth[depth];++ j)
         {
             dis[parent[node[depth][i]]][parent[node[depth][j]]] = dis[node[depth][i]][node[depth][j]] - 2;
-            /*if (node[depth][i] < node[depth][j])
-                printf("update %d %d parent: %d %d %d\n", node[depth][i], node[depth][j], parent[node[depth][i]], parent[node[depth][j]], dis[parent[node[depth][i]]][parent[node[depth][j]]]);*/
+            /*if (node[depth][i] &lt; node[depth][j])
+                printf(&quot;update %d %d parent: %d %d %d\n&quot;, node[depth][i], node[depth][j], parent[node[depth][i]], parent[node[depth][j]], dis[parent[node[depth][i]]][parent[node[depth][j]]]);*/
         }
-    for (int i = 1;i <= k;++ i)
-        if (Deep[leave[i]] < depth)
-            for (int j = 1;j <= num_of_depth[depth];++ j) {
+    for (int i = 1;i &lt;= k;++ i)
+        if (Deep[leave[i]] &lt; depth)
+            for (int j = 1;j &lt;= num_of_depth[depth];++ j) {
                 dis[leave[i]][parent[node[depth][j]]] = dis[leave[i]][node[depth][j]] - 1;
                 dis[parent[node[depth][j]]][leave[i]] = dis[leave[i]][parent[node[depth][j]]];
             }

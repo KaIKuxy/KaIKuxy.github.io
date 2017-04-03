@@ -180,9 +180,9 @@
     <!-- Bing Background -->
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+</head>
 
 
     
@@ -398,11 +398,11 @@
 <li>读题读题读题读题读题读题读题</li>
 <li>找反例不是让自己加特判的，是让自己的代码更普遍化，通用更多数据</li>
 </ol>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
 #define Maxn 25000
 using namespace std;
 struct interval {
@@ -411,36 +411,36 @@ struct interval {
 int N, T, ans;
 bool cmp(interval, interval);
 int main() {
-    scanf("%d%d", &N, &T);
-    for (int i = 0;i < N;++ i)
-        scanf("%d%d", &inter[i].start, &inter[i].end);
+    scanf(&quot;%d%d&quot;, &amp;N, &amp;T);
+    for (int i = 0;i &lt; N;++ i)
+        scanf(&quot;%d%d&quot;, &amp;inter[i].start, &amp;inter[i].end);
     sort(inter, inter + N, cmp);
-    /*for (int i = 0;i < N;++ i)
-        printf("%d %d\n", inter[i].start, inter[i].end);*/
+    /*for (int i = 0;i &lt; N;++ i)
+        printf(&quot;%d %d\n&quot;, inter[i].start, inter[i].end);*/
     int iter = 0, start, end = 0;
-    while (end < T) {
+    while (end &lt; T) {
         start = end + 1;
-        for (int i = iter;i < N;++ i)
-            if (inter[i].start <= start)
+        for (int i = iter;i &lt; N;++ i)
+            if (inter[i].start &lt;= start)
                 end = max(end, inter[i].end);
             else {
                 iter = i;
                 break;
             }
-        if (start > end) {
+        if (start &gt; end) {
             ans = -1;
             break;
         }
         ++ ans;
     }
-    printf("%d\n", ans);
+    printf(&quot;%d\n&quot;, ans);
     return 0;
 }
 bool cmp(interval x, interval y) {
     if(x.start != y.start)
-        return x.start < y.start;
+        return x.start &lt; y.start;
     else
-        return x.end < y.end;
+        return x.end &lt; y.end;
 }
 </code></pre>
 

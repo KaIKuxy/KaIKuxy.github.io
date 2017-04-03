@@ -180,9 +180,9 @@
     <!-- Bing Background -->
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+</head>
 
 
     
@@ -386,11 +386,11 @@
 <p>考虑把一个点转化为一个区间，这个区间代表需要覆盖到这个点雷达可放置区间</p>
 <p>其实和2376差不多，类似这种某个东西覆盖一些点的题目都是把数据转化为轴上可行的区间再操作。</p>
 <p>转化为区间之后，将区间按l第一关键字从小到大，r第二关键字从大到小排序，每次判断当前区间和前一个区间是否有重叠。如果有重叠，就把当前区间更新为重叠部分。如果当前区间和前一个区间没有重叠，ans+1。</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
-#include <algorithm>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
 #define Maxn 1000
 using namespace std;
 
@@ -403,39 +403,39 @@ int n, d, ans, tot, cnt;
 bool cmp(Interval, Interval);
 
 int main() {
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-    while (scanf("%d%d", &n, &d), !(n == 0 && d == 0)) {
+    //freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);
+    //freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);
+    while (scanf(&quot;%d%d&quot;, &amp;n, &amp;d), !(n == 0 &amp;&amp; d == 0)) {
         cnt = 0;
         ans = 0;
-        for (int i = 1;i <= n;++ i) {
+        for (int i = 1;i &lt;= n;++ i) {
             int tempx, tempy;
-            scanf("%d%d", &tempx, &tempy);
-            if (tempy > d)
+            scanf(&quot;%d%d&quot;, &amp;tempx, &amp;tempy);
+            if (tempy &gt; d)
                 ans = -1;
-            if (tempy >= 0) {
+            if (tempy &gt;= 0) {
                 double temp = sqrt(d * d * 1.0 - tempy * tempy * 1.0);
                 inter[++ cnt].x = tempx - temp;
                 inter[cnt].y = tempx + temp;
             }
         }
         if (ans == -1) {
-            printf("Case %d: %d\n", ++ tot, ans);
+            printf(&quot;Case %d: %d\n&quot;, ++ tot, ans);
             continue;
         }
         double nowx, nowy;
         sort(inter + 1, inter + 1 + cnt, cmp);
-        for (int i = 1;i <= cnt;++ i) {
-            if (ans == 0 || inter[i].x > inter[i - 1].y)
+        for (int i = 1;i &lt;= cnt;++ i) {
+            if (ans == 0 || inter[i].x &gt; inter[i - 1].y)
                 ++ ans;
             else {
                 inter[i].x = max(inter[i].x, inter[i - 1].x);
                 inter[i].y = min(inter[i].y, inter[i - 1].y);
             }
         }
-        /*for (int i = 1;i <= cnt;++ i)
-            printf ("\n%.4lf %.4lf", inter[i].x, inter[i].y);*/
-        printf("Case %d: %d\n", ++ tot, ans);
+        /*for (int i = 1;i &lt;= cnt;++ i)
+            printf (&quot;\n%.4lf %.4lf&quot;, inter[i].x, inter[i].y);*/
+        printf(&quot;Case %d: %d\n&quot;, ++ tot, ans);
     }
     //fclose(stdin);
     //fclose(stdout);
@@ -444,21 +444,21 @@ int main() {
 
 bool cmp(Interval a, Interval b) {
     if (a.x != b.x)
-        return a.x < b.x;
-    return a.y > b.y;
+        return a.x &lt; b.x;
+    return a.y &gt; b.y;
 }
 </code></pre>
 <h3 id="POJ-3190"><a href="#POJ-3190" class="headerlink" title="POJ 3190"></a>POJ 3190</h3><p>一如既往的cow风</p>
 <p>n个牛要在一个位置上独自榨奶时间L到R，问至少需要多少榨奶位以及每个牛在哪个榨奶位。</p>
 <p>先按照起始时间从小到大排序。再维护一个小根堆（或者说优先队列）保存当前建立的榨奶位，该榨奶位当前已被占用到lasttime作为关键字。每次对于当前牛，如果优先队列中top元素的lasttime小于当前牛的起始时间，那么当前牛可以直接被分配到这个榨奶位，再把lastime更新为当前牛的结束时间；如果top元素的lastime都大于当前牛的起始时间，那么需要新建一个榨奶位。每次维护优先队列的同时记录当前牛被分配到的榨奶位序号。</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <algorithm>
-#include <cstring>
-#include <vector>
-#include <functional>
-#include <queue>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+#include &lt;queue&gt;
 #define Maxn 50000
 using namespace std;
 2zsw
@@ -467,8 +467,8 @@ struct Interval {
 }inter[Maxn + 10];
 
 struct Stall {
-    friend bool operator < (Stall x, Stall y) {
-        return x.last > y.last;
+    friend bool operator &lt; (Stall x, Stall y) {
+        return x.last &gt; y.last;
     }
     int num, last;
 };
@@ -479,48 +479,48 @@ int stall[Maxn + 10];
 bool cmp(Interval, Interval);
 
 int main() {
-    scanf("%d", &n);
-    for (int i = 1;i <= n;++ i) {
-        scanf("%d%d", &inter[i].l, &inter[i].r);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1;i &lt;= n;++ i) {
+        scanf(&quot;%d%d&quot;, &amp;inter[i].l, &amp;inter[i].r);
         inter[i].num = i;
     }
     sort(inter + 1, inter + 1 + n, cmp);
-    /*for (int i = 1;i <= n;++ i)
-        printf("%d %d\n", inter[i].l, inter[i].r);*/
-    priority_queue<Stall> que;
-    for (int i = 1;i <= n;++ i) {
+    /*for (int i = 1;i &lt;= n;++ i)
+        printf(&quot;%d %d\n&quot;, inter[i].l, inter[i].r);*/
+    priority_queue&lt;Stall&gt; que;
+    for (int i = 1;i &lt;= n;++ i) {
         if (ans == 0) {
             stall[inter[i].num] = ++ ans;
             Stall temp = {ans, inter[i].r};
             que.push(temp);
-            //printf("Inter %d go to new stall %d\n", inter[i].num, ans);
-            //printf("top stall last:%d\n", que.top().last);
+            //printf(&quot;Inter %d go to new stall %d\n&quot;, inter[i].num, ans);
+            //printf(&quot;top stall last:%d\n&quot;, que.top().last);
             continue;
         }
         Stall temp = que.top();
-        if (temp.last < inter[i].l) {
+        if (temp.last &lt; inter[i].l) {
             que.pop();
             temp.last = inter[i].r;
             stall[inter[i].num] = temp.num;
             que.push(temp);
-            //printf("Inter %d go to existed stall %d\n", inter[i].num, temp.num);
+            //printf(&quot;Inter %d go to existed stall %d\n&quot;, inter[i].num, temp.num);
         }
         else {
             Stall tt = {++ ans, inter[i].r};
             stall[inter[i].num] = ans;
             que.push(tt);
-            //printf("Inter %d go to new stall %d\n", inter[i].num, ans);
+            //printf(&quot;Inter %d go to new stall %d\n&quot;, inter[i].num, ans);
         }
-        //printf("top stall last:%d\n", que.top().last);
+        //printf(&quot;top stall last:%d\n&quot;, que.top().last);
     }
-    printf("%d\n", ans);
-    for(int i = 1;i <= n;++ i)
-        printf("%d\n", stall[i]);
+    printf(&quot;%d\n&quot;, ans);
+    for(int i = 1;i &lt;= n;++ i)
+        printf(&quot;%d\n&quot;, stall[i]);
     return 0;
 }
 
 bool cmp(Interval a, Interval b) {
-    return a.l < b.l;
+    return a.l &lt; b.l;
 }
 </code></pre>
 

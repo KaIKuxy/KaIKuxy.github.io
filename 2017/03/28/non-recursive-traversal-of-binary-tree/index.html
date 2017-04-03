@@ -180,9 +180,9 @@
     <!-- Bing Background -->
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+</head>
 
 
     
@@ -392,43 +392,43 @@
 <p>中序遍历的时候我的做法不是那么管用了，因为先序遍历根节点最先访问，而中序需要左子树弹回来才能访问根节点，所以必须得用类似上面做法2的一样的思路</p>
 <p>后序遍历：</p>
 <p>可以和先序遍历一样一次性把右左子树压进去，在访问根节点前判一下上一个访问的是不是根节点的左右儿子，也就是说是不是从访问完左右儿子之后弹回来的，或者根本没有左右儿子，满足两种情况之一才能将这个点弹出来并访问，同时更新pre为这个根节点</p>
-<pre class=" language-C++"><code class="language-C++">void preOrder1(BiTree root) {
-    stack <BiTree> s;
+<pre><code class="C++">void preOrder1(BiTree root) {
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (p != NULL || !s.empty()) {
         while (p != NULL) {
             visit(p);
-            s.push(p);    //prepare the traversal for the p's right child
-            p = p -> lchild;
+            s.push(p);    //prepare the traversal for the p&#39;s right child
+            p = p -&gt; lchild;
         }
         if (!s.empty()) {
             p = s.top();    //get the node
             s.pop();
-            p = p -> rchild;    // turn to right child
+            p = p -&gt; rchild;    // turn to right child
         }
     }
 }
 
 void preOrder2(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (!s.empty()) {
         vist(p = s.top());
         s.pop();
-        if (p -> rchild != NULL)
-            s.push(p -> rchild);
-        if (p -> lchild != NULL)
-            s.push(p -> lchild);
+        if (p -&gt; rchild != NULL)
+            s.push(p -&gt; rchild);
+        if (p -&gt; lchild != NULL)
+            s.push(p -&gt; lchild);
     }
 }
 
 void inOrder(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (p != NULL || !s.empty()) {
         while (p != NULL) {
-            s.push(p);    //prepare the traversal for the p's right child
-            p = p -> lchild;
+            s.push(p);    //prepare the traversal for the p&#39;s right child
+            p = p -&gt; lchild;
         }
         if (!s.empty()) {
             visit(p = s.top());
@@ -439,21 +439,21 @@ void inOrder(BiTree root) {
 }
 
 void postOrder(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root, pre = NULL;
     s.push(root);
     while (!s.empty()) {
         p = s.top();
-        if ((p -> lchild == NULL && p -> rchild == NULL) || (pre != NULL && (pre == p -> lchild || pre == p -> rchild))) {     // come from child node
+        if ((p -&gt; lchild == NULL &amp;&amp; p -&gt; rchild == NULL) || (pre != NULL &amp;&amp; (pre == p -&gt; lchild || pre == p -&gt; rchild))) {     // come from child node
             visit(p);
             s.pop();
             pre = p;
         }
         else {
-            if (p -> rchild != NULL)
-                s.push(p -> rchild);
-                if (p -> lchild != NULL)
-                    s.push(p -> lchild);
+            if (p -&gt; rchild != NULL)
+                s.push(p -&gt; rchild);
+                if (p -&gt; lchild != NULL)
+                    s.push(p -&gt; lchild);
         }
     }
 }

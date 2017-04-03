@@ -12,11 +12,11 @@
 <p>考虑把一个点转化为一个区间，这个区间代表需要覆盖到这个点雷达可放置区间</p>
 <p>其实和2376差不多，类似这种某个东西覆盖一些点的题目都是把数据转化为轴上可行的区间再操作。</p>
 <p>转化为区间之后，将区间按l第一关键字从小到大，r第二关键字从大到小排序，每次判断当前区间和前一个区间是否有重叠。如果有重叠，就把当前区间更新为重叠部分。如果当前区间和前一个区间没有重叠，ans+1。</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
-#include <algorithm>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
 #define Maxn 1000
 using namespace std;
 
@@ -29,39 +29,39 @@ int n, d, ans, tot, cnt;
 bool cmp(Interval, Interval);
 
 int main() {
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-    while (scanf("%d%d", &n, &d), !(n == 0 && d == 0)) {
+    //freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);
+    //freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);
+    while (scanf(&quot;%d%d&quot;, &amp;n, &amp;d), !(n == 0 &amp;&amp; d == 0)) {
         cnt = 0;
         ans = 0;
-        for (int i = 1;i <= n;++ i) {
+        for (int i = 1;i &lt;= n;++ i) {
             int tempx, tempy;
-            scanf("%d%d", &tempx, &tempy);
-            if (tempy > d)
+            scanf(&quot;%d%d&quot;, &amp;tempx, &amp;tempy);
+            if (tempy &gt; d)
                 ans = -1;
-            if (tempy >= 0) {
+            if (tempy &gt;= 0) {
                 double temp = sqrt(d * d * 1.0 - tempy * tempy * 1.0);
                 inter[++ cnt].x = tempx - temp;
                 inter[cnt].y = tempx + temp;
             }
         }
         if (ans == -1) {
-            printf("Case %d: %d\n", ++ tot, ans);
+            printf(&quot;Case %d: %d\n&quot;, ++ tot, ans);
             continue;
         }
         double nowx, nowy;
         sort(inter + 1, inter + 1 + cnt, cmp);
-        for (int i = 1;i <= cnt;++ i) {
-            if (ans == 0 || inter[i].x > inter[i - 1].y)
+        for (int i = 1;i &lt;= cnt;++ i) {
+            if (ans == 0 || inter[i].x &gt; inter[i - 1].y)
                 ++ ans;
             else {
                 inter[i].x = max(inter[i].x, inter[i - 1].x);
                 inter[i].y = min(inter[i].y, inter[i - 1].y);
             }
         }
-        /*for (int i = 1;i <= cnt;++ i)
-            printf ("\n%.4lf %.4lf", inter[i].x, inter[i].y);*/
-        printf("Case %d: %d\n", ++ tot, ans);
+        /*for (int i = 1;i &lt;= cnt;++ i)
+            printf (&quot;\n%.4lf %.4lf&quot;, inter[i].x, inter[i].y);*/
+        printf(&quot;Case %d: %d\n&quot;, ++ tot, ans);
     }
     //fclose(stdin);
     //fclose(stdout);
@@ -70,21 +70,21 @@ int main() {
 
 bool cmp(Interval a, Interval b) {
     if (a.x != b.x)
-        return a.x < b.x;
-    return a.y > b.y;
+        return a.x &lt; b.x;
+    return a.y &gt; b.y;
 }
 </code></pre>
 <h3 id="POJ-3190"><a href="#POJ-3190" class="headerlink" title="POJ 3190"></a>POJ 3190</h3><p>一如既往的cow风</p>
 <p>n个牛要在一个位置上独自榨奶时间L到R，问至少需要多少榨奶位以及每个牛在哪个榨奶位。</p>
 <p>先按照起始时间从小到大排序。再维护一个小根堆（或者说优先队列）保存当前建立的榨奶位，该榨奶位当前已被占用到lasttime作为关键字。每次对于当前牛，如果优先队列中top元素的lasttime小于当前牛的起始时间，那么当前牛可以直接被分配到这个榨奶位，再把lastime更新为当前牛的结束时间；如果top元素的lastime都大于当前牛的起始时间，那么需要新建一个榨奶位。每次维护优先队列的同时记录当前牛被分配到的榨奶位序号。</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <algorithm>
-#include <cstring>
-#include <vector>
-#include <functional>
-#include <queue>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+#include &lt;queue&gt;
 #define Maxn 50000
 using namespace std;
 2zsw
@@ -93,8 +93,8 @@ struct Interval {
 }inter[Maxn + 10];
 
 struct Stall {
-    friend bool operator < (Stall x, Stall y) {
-        return x.last > y.last;
+    friend bool operator &lt; (Stall x, Stall y) {
+        return x.last &gt; y.last;
     }
     int num, last;
 };
@@ -105,48 +105,48 @@ int stall[Maxn + 10];
 bool cmp(Interval, Interval);
 
 int main() {
-    scanf("%d", &n);
-    for (int i = 1;i <= n;++ i) {
-        scanf("%d%d", &inter[i].l, &inter[i].r);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1;i &lt;= n;++ i) {
+        scanf(&quot;%d%d&quot;, &amp;inter[i].l, &amp;inter[i].r);
         inter[i].num = i;
     }
     sort(inter + 1, inter + 1 + n, cmp);
-    /*for (int i = 1;i <= n;++ i)
-        printf("%d %d\n", inter[i].l, inter[i].r);*/
-    priority_queue<Stall> que;
-    for (int i = 1;i <= n;++ i) {
+    /*for (int i = 1;i &lt;= n;++ i)
+        printf(&quot;%d %d\n&quot;, inter[i].l, inter[i].r);*/
+    priority_queue&lt;Stall&gt; que;
+    for (int i = 1;i &lt;= n;++ i) {
         if (ans == 0) {
             stall[inter[i].num] = ++ ans;
             Stall temp = {ans, inter[i].r};
             que.push(temp);
-            //printf("Inter %d go to new stall %d\n", inter[i].num, ans);
-            //printf("top stall last:%d\n", que.top().last);
+            //printf(&quot;Inter %d go to new stall %d\n&quot;, inter[i].num, ans);
+            //printf(&quot;top stall last:%d\n&quot;, que.top().last);
             continue;
         }
         Stall temp = que.top();
-        if (temp.last < inter[i].l) {
+        if (temp.last &lt; inter[i].l) {
             que.pop();
             temp.last = inter[i].r;
             stall[inter[i].num] = temp.num;
             que.push(temp);
-            //printf("Inter %d go to existed stall %d\n", inter[i].num, temp.num);
+            //printf(&quot;Inter %d go to existed stall %d\n&quot;, inter[i].num, temp.num);
         }
         else {
             Stall tt = {++ ans, inter[i].r};
             stall[inter[i].num] = ans;
             que.push(tt);
-            //printf("Inter %d go to new stall %d\n", inter[i].num, ans);
+            //printf(&quot;Inter %d go to new stall %d\n&quot;, inter[i].num, ans);
         }
-        //printf("top stall last:%d\n", que.top().last);
+        //printf(&quot;top stall last:%d\n&quot;, que.top().last);
     }
-    printf("%d\n", ans);
-    for(int i = 1;i <= n;++ i)
-        printf("%d\n", stall[i]);
+    printf(&quot;%d\n&quot;, ans);
+    for(int i = 1;i &lt;= n;++ i)
+        printf(&quot;%d\n&quot;, stall[i]);
     return 0;
 }
 
 bool cmp(Interval a, Interval b) {
-    return a.l < b.l;
+    return a.l &lt; b.l;
 }
 </code></pre>
 ]]></content>
@@ -190,15 +190,15 @@ bool cmp(Interval a, Interval b) {
 <li>每次抽卡可以当作独立事件计算期望最后加起来。</li>
 <li>初始概率不断会被除以2向下取整，那么经过若干次之后初始概率一定会固定在0不动，最坏情况P初始等于100，这种情况下7次就会使初始概率固定在0。7次之后的卡就可以只需要计算一次了,数据范围里面N再大也没啥关系了。</li>
 </ol>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
 #define Maxn 100
 using namespace std;
 int P, Q, N;
 int main() {
-    scanf("%d%d%d", &P, &Q, &N);
+    scanf(&quot;%d%d%d&quot;, &amp;P, &amp;Q, &amp;N);
     int cnt;
     double ans = 0, pnow, tempp, tempans;
     while (N) {
@@ -210,7 +210,7 @@ int main() {
                 break;
             tempp = tempp * (1.0 - pnow);
             pnow += Q / 100.0;
-            if (pnow > 1.0)
+            if (pnow &gt; 1.0)
                 pnow = 1.0;
         }
         ans += tempans;
@@ -221,7 +221,7 @@ int main() {
     }
     if (N)
         ans = ans + N * tempans;
-    printf ("%.2lf\n", ans);
+    printf (&quot;%.2lf\n&quot;, ans);
     return 0;
 }
 </code></pre>
@@ -241,9 +241,9 @@ int main() {
 <p>更新完这一层的结点之后，需要更新结点的距离。</p>
 <p>题目只给了叶子结点的距离，每次更新完一层结点的父亲之后，该层两两结点的父亲之间的距离就是两个结点距离-2，而对于深度小于当前层的叶子结点，其与该层结点父亲的距离就是与此结点的距离-1。为什么这样不说了，画出来很显然。</p>
 <p>一A</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
 #define Maxn 100
 using namespace std;
 
@@ -261,62 +261,62 @@ void work(int);
 
 int main() {
     init();
-    for (int t = m;t > 1;-- t)
+    for (int t = m;t &gt; 1;-- t)
         work(t);
-    printf("%d", parent[1]);
-    for (int i = 2;i <= n;++ i)
-        printf(" %d", parent[i]);
-    printf("\n");
+    printf(&quot;%d&quot;, parent[1]);
+    for (int i = 2;i &lt;= n;++ i)
+        printf(&quot; %d&quot;, parent[i]);
+    printf(&quot;\n&quot;);
     return 0;
 }
 
 void init() {
-    scanf("%d%d%d", &n, &m, &k);
-    for (int i = 1;i <= m;++ i)
-        scanf("%d", &num_of_depth[i]);
-    //printf("num_of_depth\n");
-    for (int i = 1;i <= m;++ i)
-        for (int j = 1;j <= num_of_depth[i];++ j)
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;k);
+    for (int i = 1;i &lt;= m;++ i)
+        scanf(&quot;%d&quot;, &amp;num_of_depth[i]);
+    //printf(&quot;num_of_depth\n&quot;);
+    for (int i = 1;i &lt;= m;++ i)
+        for (int j = 1;j &lt;= num_of_depth[i];++ j)
         {
-            scanf("%d", &node[i][j]);
+            scanf(&quot;%d&quot;, &amp;node[i][j]);
             Deep[node[i][j]] = i;
         }
-    //printf("node\n");
-    for (int i = 1;i <= k;++ i) {
+    //printf(&quot;node\n&quot;);
+    for (int i = 1;i &lt;= k;++ i) {
         int temp;
-        scanf("%d", &leave[i]);
+        scanf(&quot;%d&quot;, &amp;leave[i]);
         isleave[leave[i]] = true;
     }
-    //printf("leave\n");
-    for (int i = 1;i <= k;++ i)
-        for (int j = 1;j <= k;++ j)
-            scanf("%d", &dis[leave[i]][leave[j]]);
+    //printf(&quot;leave\n&quot;);
+    for (int i = 1;i &lt;= k;++ i)
+        for (int j = 1;j &lt;= k;++ j)
+            scanf(&quot;%d&quot;, &amp;dis[leave[i]][leave[j]]);
 }
 
 void work(int depth) {
     int start = 0, pre = 0;
-    for (int i = 1;i <= num_of_depth[depth];++ i) {
+    for (int i = 1;i &lt;= num_of_depth[depth];++ i) {
         if (i == 1 || dis[node[depth][i]][node[depth][i - 1]] != 2) {
-            //printf("%d != %d\n", node[depth][i], node[depth][i - 1]);
+            //printf(&quot;%d != %d\n&quot;, node[depth][i], node[depth][i - 1]);
             ++ start;
             while (isleave[node[depth - 1][start]])
                 ++ start;
             parent[node[depth][i]] = node[depth - 1][start];
-            //printf("%d parent: %d\n", node[depth][i], node[depth - 1][start]);
+            //printf(&quot;%d parent: %d\n&quot;, node[depth][i], node[depth - 1][start]);
         }
         if (dis[node[depth][i]][node[depth][i - 1]] == 2)
             parent[node[depth][i]] = parent[node[depth][i - 1]];
     }
-    for (int i = 1;i <= num_of_depth[depth];++ i)
-        for (int j = 1;j <= num_of_depth[depth];++ j)
+    for (int i = 1;i &lt;= num_of_depth[depth];++ i)
+        for (int j = 1;j &lt;= num_of_depth[depth];++ j)
         {
             dis[parent[node[depth][i]]][parent[node[depth][j]]] = dis[node[depth][i]][node[depth][j]] - 2;
-            /*if (node[depth][i] < node[depth][j])
-                printf("update %d %d parent: %d %d %d\n", node[depth][i], node[depth][j], parent[node[depth][i]], parent[node[depth][j]], dis[parent[node[depth][i]]][parent[node[depth][j]]]);*/
+            /*if (node[depth][i] &lt; node[depth][j])
+                printf(&quot;update %d %d parent: %d %d %d\n&quot;, node[depth][i], node[depth][j], parent[node[depth][i]], parent[node[depth][j]], dis[parent[node[depth][i]]][parent[node[depth][j]]]);*/
         }
-    for (int i = 1;i <= k;++ i)
-        if (Deep[leave[i]] < depth)
-            for (int j = 1;j <= num_of_depth[depth];++ j) {
+    for (int i = 1;i &lt;= k;++ i)
+        if (Deep[leave[i]] &lt; depth)
+            for (int j = 1;j &lt;= num_of_depth[depth];++ j) {
                 dis[leave[i]][parent[node[depth][j]]] = dis[leave[i]][node[depth][j]] - 1;
                 dis[parent[node[depth][j]]][leave[i]] = dis[leave[i]][parent[node[depth][j]]];
             }
@@ -357,43 +357,43 @@ void work(int depth) {
 <p>中序遍历的时候我的做法不是那么管用了，因为先序遍历根节点最先访问，而中序需要左子树弹回来才能访问根节点，所以必须得用类似上面做法2的一样的思路</p>
 <p>后序遍历：</p>
 <p>可以和先序遍历一样一次性把右左子树压进去，在访问根节点前判一下上一个访问的是不是根节点的左右儿子，也就是说是不是从访问完左右儿子之后弹回来的，或者根本没有左右儿子，满足两种情况之一才能将这个点弹出来并访问，同时更新pre为这个根节点</p>
-<pre class=" language-C++"><code class="language-C++">void preOrder1(BiTree root) {
-    stack <BiTree> s;
+<pre><code class="C++">void preOrder1(BiTree root) {
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (p != NULL || !s.empty()) {
         while (p != NULL) {
             visit(p);
-            s.push(p);    //prepare the traversal for the p's right child
-            p = p -> lchild;
+            s.push(p);    //prepare the traversal for the p&#39;s right child
+            p = p -&gt; lchild;
         }
         if (!s.empty()) {
             p = s.top();    //get the node
             s.pop();
-            p = p -> rchild;    // turn to right child
+            p = p -&gt; rchild;    // turn to right child
         }
     }
 }
 
 void preOrder2(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (!s.empty()) {
         vist(p = s.top());
         s.pop();
-        if (p -> rchild != NULL)
-            s.push(p -> rchild);
-        if (p -> lchild != NULL)
-            s.push(p -> lchild);
+        if (p -&gt; rchild != NULL)
+            s.push(p -&gt; rchild);
+        if (p -&gt; lchild != NULL)
+            s.push(p -&gt; lchild);
     }
 }
 
 void inOrder(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root;
     while (p != NULL || !s.empty()) {
         while (p != NULL) {
-            s.push(p);    //prepare the traversal for the p's right child
-            p = p -> lchild;
+            s.push(p);    //prepare the traversal for the p&#39;s right child
+            p = p -&gt; lchild;
         }
         if (!s.empty()) {
             visit(p = s.top());
@@ -404,21 +404,21 @@ void inOrder(BiTree root) {
 }
 
 void postOrder(BiTree root) {
-    stack <BiTree> s;
+    stack &lt;BiTree&gt; s;
     BiTree p = root, pre = NULL;
     s.push(root);
     while (!s.empty()) {
         p = s.top();
-        if ((p -> lchild == NULL && p -> rchild == NULL) || (pre != NULL && (pre == p -> lchild || pre == p -> rchild))) {     // come from child node
+        if ((p -&gt; lchild == NULL &amp;&amp; p -&gt; rchild == NULL) || (pre != NULL &amp;&amp; (pre == p -&gt; lchild || pre == p -&gt; rchild))) {     // come from child node
             visit(p);
             s.pop();
             pre = p;
         }
         else {
-            if (p -> rchild != NULL)
-                s.push(p -> rchild);
-                if (p -> lchild != NULL)
-                    s.push(p -> lchild);
+            if (p -&gt; rchild != NULL)
+                s.push(p -&gt; rchild);
+                if (p -&gt; lchild != NULL)
+                    s.push(p -&gt; lchild);
         }
     }
 }
@@ -510,11 +510,11 @@ void postOrder(BiTree root) {
 <li>读题读题读题读题读题读题读题</li>
 <li>找反例不是让自己加特判的，是让自己的代码更普遍化，通用更多数据</li>
 </ol>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
 #define Maxn 25000
 using namespace std;
 struct interval {
@@ -523,36 +523,36 @@ struct interval {
 int N, T, ans;
 bool cmp(interval, interval);
 int main() {
-    scanf("%d%d", &N, &T);
-    for (int i = 0;i < N;++ i)
-        scanf("%d%d", &inter[i].start, &inter[i].end);
+    scanf(&quot;%d%d&quot;, &amp;N, &amp;T);
+    for (int i = 0;i &lt; N;++ i)
+        scanf(&quot;%d%d&quot;, &amp;inter[i].start, &amp;inter[i].end);
     sort(inter, inter + N, cmp);
-    /*for (int i = 0;i < N;++ i)
-        printf("%d %d\n", inter[i].start, inter[i].end);*/
+    /*for (int i = 0;i &lt; N;++ i)
+        printf(&quot;%d %d\n&quot;, inter[i].start, inter[i].end);*/
     int iter = 0, start, end = 0;
-    while (end < T) {
+    while (end &lt; T) {
         start = end + 1;
-        for (int i = iter;i < N;++ i)
-            if (inter[i].start <= start)
+        for (int i = iter;i &lt; N;++ i)
+            if (inter[i].start &lt;= start)
                 end = max(end, inter[i].end);
             else {
                 iter = i;
                 break;
             }
-        if (start > end) {
+        if (start &gt; end) {
             ans = -1;
             break;
         }
         ++ ans;
     }
-    printf("%d\n", ans);
+    printf(&quot;%d\n&quot;, ans);
     return 0;
 }
 bool cmp(interval x, interval y) {
     if(x.start != y.start)
-        return x.start < y.start;
+        return x.start &lt; y.start;
     else
-        return x.end < y.end;
+        return x.end &lt; y.end;
 }
 </code></pre>
 ]]></content>
@@ -586,16 +586,16 @@ bool cmp(interval x, interval y) {
       <content type="html"><![CDATA[<p>做了一上午的2718，差点爆炸</p>
 <p>做法一：<br>用到了STL中的next_permutation产生所有的全排列<br>要使生成的两个数差最小，两个数的位数差肯定小于等于1，产生一个排列之后在中间分开就可以</p>
 <p>什么时候详细写一下STL里面产生全排列的写法</p>
-<pre class=" language-C++"><code class="language-C++">/*
+<pre><code class="C++">/*
     next_permutation
 */
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cstring>
-#include <cmath>
-#include <algorithm>
-#include <time.h>
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+#include &lt;time.h&gt;
 using namespace std;
 
 int t, cnt, ans;
@@ -606,31 +606,31 @@ int make(int, int);
 
 int main() {
     //clock_t start, end;
-    //freopen("output.txt", "r", stdin);
-    //freopen("out1.txt", "w", stdout);
-    scanf("%d", &t);
+    //freopen(&quot;output.txt&quot;, &quot;r&quot;, stdin);
+    //freopen(&quot;out1.txt&quot;, &quot;w&quot;, stdout);
+    scanf(&quot;%d&quot;, &amp;t);
     getchar();
     while (t --) {
         cnt = 0;
         gets(input);
-        for (int i = 0;i < strlen(input);++ i)
-            if (input[i] != ' ')
+        for (int i = 0;i &lt; strlen(input);++ i)
+            if (input[i] != &#39; &#39;)
                 arr[cnt ++] = input[i];
-        //printf("cnt: %d\n", cnt);
+        //printf(&quot;cnt: %d\n&quot;, cnt);
         //start = clock();
         sort(arr, arr + cnt);
-        //for (int i = 0;i < cnt;++ i)
-            //printf("%d", arr[i]);
+        //for (int i = 0;i &lt; cnt;++ i)
+            //printf(&quot;%d&quot;, arr[i]);
         ans = -1;
         do {
-                if (arr[0] == '0' || arr[cnt / 2] == '0' && cnt > 2)
+                if (arr[0] == &#39;0&#39; || arr[cnt / 2] == &#39;0&#39; &amp;&amp; cnt &gt; 2)
                     continue;
                 int temp = abs(make(0, cnt / 2 - 1) - make(cnt / 2, cnt - 1));
-                ans = (ans == -1 || ans > temp) ? temp : ans;
+                ans = (ans == -1 || ans &gt; temp) ? temp : ans;
         } while(next_permutation(arr, arr + cnt));
-        printf("%d\n", ans);
+        printf(&quot;%d\n&quot;, ans);
         //end = clock();
-        //printf("time:%f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        //printf(&quot;time:%f\n&quot;, (double)(end - start) / CLOCKS_PER_SEC);
     }
     //fclose(stdin);
     //fclose(stdout);
@@ -639,23 +639,23 @@ int main() {
 
 int make(int a, int b) {
     int temp = 0;
-    for(int i = a;i <= b;++ i)
-        temp = temp * 10 + arr[i] - '0';
+    for(int i = a;i &lt;= b;++ i)
+        temp = temp * 10 + arr[i] - &#39;0&#39;;
     return temp;
 }
 </code></pre>
 <p>做法二：<br>分情况<br>如果是偶数的话，枚举所有两个相差最近的数当作两个生成的数的最高位，之后大数不断取剩下的数中最小的数当作下一位，小数不断取剩下的数中最大的数当作下一位，对于每个枚举更新下ans<br>如果是奇数的话，就不需要枚举最高位了，因为大的那个数最高位一定得取最小的数字，剩下和偶数做法一样不断取最小的数最大的数然后更新ans<br>然后需要注意在偶数枚举最高位的时候，不能考虑数字0，其他情况下先不考虑0到最后计算差值的时候如果0出现在第一位就和后面数字换一下位置就可以<br>我也不知道为什么贪心会WA那么多次，大概是我太菜了，把所有数据全部生成出来对比才发现问题，哎.什么时候还再回忆一下对拍咋写</p>
 <p>代码又臭又长</p>
-<pre class=" language-C++"><code class="language-C++">/*
+<pre><code class="C++">/*
     greedy
 */
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cstring>
-#include <cmath>
-#include <algorithm>
-#include <time.h>
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+#include &lt;time.h&gt;
 using namespace std;
 
 int t, cnt, ans;
@@ -668,32 +668,32 @@ int make(char*, int, int);
 
 int main() {
     //clock_t start, end;
-    //freopen("output.txt", "r", stdin);
-    //freopen("out2.txt", "w", stdout);
-    scanf("%d", &t);
+    //freopen(&quot;output.txt&quot;, &quot;r&quot;, stdin);
+    //freopen(&quot;out2.txt&quot;, &quot;w&quot;, stdout);
+    scanf(&quot;%d&quot;, &amp;t);
     getchar();
     while (t --) {
         ans = -1;
         cnt1 = cnt2 = 0;
         cnt = 0;
         gets(input);
-        for (int i = 0;i < strlen(input);++ i)
-            if (input[i] != ' ')
+        for (int i = 0;i &lt; strlen(input);++ i)
+            if (input[i] != &#39; &#39;)
                 arr[cnt ++] = input[i];
-        //printf("cnt: %d\n", cnt);
+        //printf(&quot;cnt: %d\n&quot;, cnt);
         //start = clock();
         sort(arr, arr + cnt);
-        //for (int i = 0;i < cnt;++ i)
-            //printf("%d", arr[i]);
+        //for (int i = 0;i &lt; cnt;++ i)
+            //printf(&quot;%d&quot;, arr[i]);
         /*
         do {
-                if (arr[0] == '0' || arr[cnt / 2] == '0' && cnt > 2)
+                if (arr[0] == &#39;0&#39; || arr[cnt / 2] == &#39;0&#39; &amp;&amp; cnt &gt; 2)
                     continue;
                 int temp = abs(make(0, cnt / 2 - 1) - make(cnt / 2, cnt - 1));
-                ans = (ans == -1 || ans > temp) ? temp : ans;
+                ans = (ans == -1 || ans &gt; temp) ? temp : ans;
         } while(next_permutation(arr, arr + cnt));*/
             if(cnt == 2) {
-                printf("%d\n", abs(arr[1] - arr[0]));
+                printf(&quot;%d\n&quot;, abs(arr[1] - arr[0]));
                 continue ;
             }
 
@@ -701,32 +701,32 @@ int main() {
 
             if(cnt % 2) {
                 int temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2 + 1;
-                for (int i = 0;i < cnt && temp;++ i) {
+                for (int i = 0;i &lt; cnt &amp;&amp; temp;++ i) {
                     num1[cnt1 ++] = arr[i];
                     -- temp;
                 }
                 temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
-                for (int i = cnt - 1;i >= 0 && temp;-- i) {
+                for (int i = cnt - 1;i &gt;= 0 &amp;&amp; temp;-- i) {
                     num2[cnt2 ++] = arr[i];
                     -- temp;
                 }
-                /*printf("Bigger: ");
-                for (int j = 0;j < cnt1;++ j)
-                    printf("%c ", num1[j]);
-                printf("\n");
-                printf("Smaller: ");
-                for (int j = 0;j < cnt2;++ j)
-                    printf("%c ", num2[j]);
-                printf("\n");*/
+                /*printf(&quot;Bigger: &quot;);
+                for (int j = 0;j &lt; cnt1;++ j)
+                    printf(&quot;%c &quot;, num1[j]);
+                printf(&quot;\n&quot;);
+                printf(&quot;Smaller: &quot;);
+                for (int j = 0;j &lt; cnt2;++ j)
+                    printf(&quot;%c &quot;, num2[j]);
+                printf(&quot;\n&quot;);*/
                 temp = abs(make(num1, 0, cnt1 - 1) - make(num2, 0, cnt2 - 1));
                 ans = temp;
             }
             else {
-                for (int i = 0;i < cnt - 1;++ i)
-                    if (arr[i] != '0')
+                for (int i = 0;i &lt; cnt - 1;++ i)
+                    if (arr[i] != &#39;0&#39;)
                         Min = min(Min, arr[i + 1] - arr[i]);
-                for (int i = 0;i < cnt - 1;++ i)
-                    if (arr[i] != '0') {
+                for (int i = 0;i &lt; cnt - 1;++ i)
+                    if (arr[i] != &#39;0&#39;) {
                         if (Min == arr[i + 1] - arr[i])
                         {
                             cnt1 = cnt2 = 0;
@@ -736,35 +736,35 @@ int main() {
                             num1[cnt1 ++] = arr[i + 1]; // bigger
                             num2[cnt2 ++] = arr[i]; // smaller
 
-                            //printf("cnt1: %d    cnt2: %d\n", cnt1, cnt2);
+                            //printf(&quot;cnt1: %d    cnt2: %d\n&quot;, cnt1, cnt2);
 
                             temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
-                            for (int j = 0;j < cnt && temp;++ j)
+                            for (int j = 0;j &lt; cnt &amp;&amp; temp;++ j)
                                 if (!use[j]) {
                                     num1[cnt1 ++] = arr[j];
                                     -- temp;
                                 }
                             temp = (cnt - ((cnt % 2) ? 0 : 2)) / 2;
-                            for (int j = cnt - 1;j >= 0 && temp;-- j)
+                            for (int j = cnt - 1;j &gt;= 0 &amp;&amp; temp;-- j)
                                 if (!use[j]) {
                                     num2[cnt2 ++] = arr[j];
                                 -- temp;
                                 }
-                            /*for (int j = 0;j < cnt1;++ j)
-                            printf("%c ", num1[j]);
-                            printf("\n");
-                            for (int j = 0;j < cnt2;++ j)
-                            printf("%c ", num2[j]);
-                            printf("\n");*/
+                            /*for (int j = 0;j &lt; cnt1;++ j)
+                            printf(&quot;%c &quot;, num1[j]);
+                            printf(&quot;\n&quot;);
+                            for (int j = 0;j &lt; cnt2;++ j)
+                            printf(&quot;%c &quot;, num2[j]);
+                            printf(&quot;\n&quot;);*/
                             temp = abs(make(num1, 0, cnt1 - 1) - make(num2, 0, cnt2 - 1));
-                            //printf ("%d\n", temp);
-                            ans = (ans == -1 || ans > temp) ? temp : ans;
+                            //printf (&quot;%d\n&quot;, temp);
+                            ans = (ans == -1 || ans &gt; temp) ? temp : ans;
                         }
                     }
             }
-        printf("%d\n", ans);
+        printf(&quot;%d\n&quot;, ans);
         //end = clock();
-        //printf("time:%f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        //printf(&quot;time:%f\n&quot;, (double)(end - start) / CLOCKS_PER_SEC);
     }
     //fclose(stdin);
     //fclose(stdout);
@@ -773,14 +773,14 @@ int main() {
 
 int make(char* s ,int a, int b) {
     int temp = 0;
-    //printf("%c %c\n", *(s + a), *(s + a + 1));
-    if(b - a > 0 && *(s + a) == '0') {
+    //printf(&quot;%c %c\n&quot;, *(s + a), *(s + a + 1));
+    if(b - a &gt; 0 &amp;&amp; *(s + a) == &#39;0&#39;) {
         char tempc = *(s + a);
         *(s + a) = *(s + a + 1);
         *(s + a + 1) = tempc;
     }
-    for(int i = a;i <= b;++ i)
-        temp = temp * 10 + *(s + i) - '0';
+    for(int i = a;i &lt;= b;++ i)
+        temp = temp * 10 + *(s + i) - &#39;0&#39;;
     return temp;
 }
 </code></pre>
@@ -829,31 +829,31 @@ int make(char* s ,int a, int b) {
       <content type="html"><![CDATA[<p>一道DFS一道BFS</p>
 <p>1979:</p>
 <p>DFS无脑扫就可以了</p>
-<pre class=" language-C++"><code class="language-C++">#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cstring>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
 #define MaxW 20
 using namespace std;
 
 int W, H, ans;
 char input;
 bool sign[MaxW + 10][MaxW + 10];
-pair <int, int> start;
+pair &lt;int, int&gt; start;
 bool tra[MaxW + 10][MaxW + 10];
 
 void Tra(int, int);
 
 int main() {
-    while (scanf("%d%d", &W, &H), !(W == 0 && H == 0)) {
+    while (scanf(&quot;%d%d&quot;, &amp;W, &amp;H), !(W == 0 &amp;&amp; H == 0)) {
         ans = 0;
         getchar();
         memset(tra, 0, sizeof(tra));
-        for (int i = 1;i <= H;++ i) {
-            for (int j = 1;j <= W;++ j) {
-                scanf("%c", &input);
-                if(input == '.')    sign[i][j] = true;
-                else if(input == '#')    sign[i][j] = false;
+        for (int i = 1;i &lt;= H;++ i) {
+            for (int j = 1;j &lt;= W;++ j) {
+                scanf(&quot;%c&quot;, &amp;input);
+                if(input == &#39;.&#39;)    sign[i][j] = true;
+                else if(input == &#39;#&#39;)    sign[i][j] = false;
                 else {
                     sign[i][j] = true;
                     start = make_pair(i, j);
@@ -862,22 +862,22 @@ int main() {
             getchar();
         }
         Tra (start.first, start.second);
-        printf("%d\n", ans);
+        printf(&quot;%d\n&quot;, ans);
     }
     return 0;
 }
 
 void Tra(int x, int y) {
-    //printf ("%d %d\n", x, y);
+    //printf (&quot;%d %d\n&quot;, x, y);
     ++ ans;
     tra[x][y] = true;
-    if(x + 1 <= H && sign[x + 1][y] && !tra[x + 1][y])
+    if(x + 1 &lt;= H &amp;&amp; sign[x + 1][y] &amp;&amp; !tra[x + 1][y])
         Tra(x + 1, y);
-    if(x - 1 >= 1 && sign[x - 1][y] && !tra[x - 1][y])
+    if(x - 1 &gt;= 1 &amp;&amp; sign[x - 1][y] &amp;&amp; !tra[x - 1][y])
         Tra(x - 1, y);
-    if(y + 1 <= W && sign[x][y + 1] && !tra[x][y + 1])
+    if(y + 1 &lt;= W &amp;&amp; sign[x][y + 1] &amp;&amp; !tra[x][y + 1])
         Tra(x, y + 1);
-    if(y - 1 >= 1 && sign[x][y - 1] && !tra[x][y - 1])
+    if(y - 1 &gt;= 1 &amp;&amp; sign[x][y - 1] &amp;&amp; !tra[x][y - 1])
         Tra(x, y - 1);
 }
 </code></pre>
@@ -1089,16 +1089,16 @@ int main() {
       <title><![CDATA[Hello World]]></title>
       <url>https://kaikuxy.github.io/2017/03/19/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
 </code></pre>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
 </code></pre>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
 </code></pre>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
 </code></pre>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
