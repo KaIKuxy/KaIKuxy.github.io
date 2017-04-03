@@ -4,6 +4,102 @@
   
     
     <entry>
+      <title><![CDATA[POJ 1328 GreedyAlgorithm]]></title>
+      <url>https://kaikuxy.github.io/2017/04/03/poj-1328/</url>
+      <content type="html"><![CDATA[<p>微软题目没思路。。。。再推推吧。。。</p>
+<p>二维的区间覆盖，雷达固定在x轴上，问最少雷达数观测到所有小岛</p>
+<p>最开始想着直接按照x轴或者y轴排序贪心，但是发现并不能，很容易就能找到反例，单单按照一个轴的方向排序并不能满足最优性。</p>
+<p>考虑把一个点转化为一个区间，这个区间代表需要覆盖到这个点雷达可放置区间</p>
+<p>其实和2376差不多，类似这种某个东西覆盖一些点的题目都是把数据转化为轴上可行的区间再操作。</p>
+<p>转化为区间之后，将区间按l第一关键字从小到大，r第二关键字从大到小排序，每次判断当前区间和前一个区间是否有重叠。如果有重叠，就把当前区间更新为重叠部分。如果当前区间和前一个区间没有重叠，ans+1。</p>
+<pre class=" language-C++"><code class="language-C++">#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#define Maxn 1000
+using namespace std;
+
+struct Interval {
+    double x, y;
+}inter[Maxn + 10];
+
+int n, d, ans, tot, cnt;
+
+bool cmp(Interval, Interval);
+
+int main() {
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+    while (scanf("%d%d", &n, &d), !(n == 0 && d == 0)) {
+        cnt = 0;
+        ans = 0;
+        for (int i = 1;i <= n;++ i) {
+            int tempx, tempy;
+            scanf("%d%d", &tempx, &tempy);
+            if (tempy > d)
+                ans = -1;
+            if (tempy >= 0) {
+                double temp = sqrt(d * d * 1.0 - tempy * tempy * 1.0);
+                inter[++ cnt].x = tempx - temp;
+                inter[cnt].y = tempx + temp;
+            }
+        }
+        if (ans == -1) {
+            printf("Case %d: %d\n", ++ tot, ans);
+            continue;
+        }
+        double nowx, nowy;
+        sort(inter + 1, inter + 1 + cnt, cmp);
+        for (int i = 1;i <= cnt;++ i) {
+            if (ans == 0 || inter[i].x > inter[i - 1].y)
+                ++ ans;
+            else {
+                inter[i].x = max(inter[i].x, inter[i - 1].x);
+                inter[i].y = min(inter[i].y, inter[i - 1].y);
+            }
+        }
+        /*for (int i = 1;i <= cnt;++ i)
+            printf ("\n%.4lf %.4lf", inter[i].x, inter[i].y);*/
+        printf("Case %d: %d\n", ++ tot, ans);
+    }
+    //fclose(stdin);
+    //fclose(stdout);
+    return 0;
+}
+
+bool cmp(Interval a, Interval b) {
+    if (a.x != b.x)
+        return a.x < b.x;
+    return a.y > b.y;
+}
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> GreedyAlgorithm </category>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[微软2017年预科生计划在线编程笔试_上]]></title>
       <url>https://kaikuxy.github.io/2017/04/01/%E5%BE%AE%E8%BD%AF2017%E5%B9%B4%E9%A2%84%E7%A7%91%E7%94%9F%E8%AE%A1%E5%88%92%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AF%95-%E4%B8%8A/</url>
       <content type="html"><![CDATA[<p>昨天晚上进行了微软2017预科生计划的在线编程笔试，然而之前并没有报名加上还有第二天的セリフ没做完于是没当时就做。<br>今天晚上仔细看了下，A了前两题，时间大概和现场的两个半小时差不多（自己还在听歌嗨）<br>后面两题明天再看吧。。。C题贼长，看都不想看</p>
@@ -397,9 +493,9 @@ bool cmp(interval x, interval y) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
@@ -628,9 +724,9 @@ int make(char* s ,int a, int b) {
             
             <tag> POJ </tag>
             
-            <tag> ACM </tag>
-            
             <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
             
             <tag> STL </tag>
             
@@ -795,11 +891,11 @@ int main() {
             
             <tag> POJ </tag>
             
+            <tag> ACM </tag>
+            
             <tag> BFS </tag>
             
             <tag> DFS </tag>
-            
-            <tag> ACM </tag>
             
         </tags>
         
