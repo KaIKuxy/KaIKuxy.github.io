@@ -4,6 +4,75 @@
   
     
     <entry>
+      <title><![CDATA[POJ 2393 GreedyAlgorithm]]></title>
+      <url>https://kaikuxy.github.io/2017/04/04/poj-2393/</url>
+      <content type="html"><![CDATA[<p>贪心</p>
+<p>每个星期可以制作无限数量的酸奶，每个星期有一个客户酸奶需求量Yi和单位酸奶制作花费Ci，酸奶可以以每个星期每单位S的花费无限储存。问如何花费最少满足所有客户需求量。</p>
+<p>第i个星期若采用前面第j个星期时制作的酸奶，需满足式子</p>
+<blockquote>
+<p>Ci <em> Yi &gt; Cj </em> Yi + S <em> Yi </em> (i - j)</p>
+<p>↓</p>
+<p>Ci - Si &gt; Cj - Sj</p>
+</blockquote>
+<p>维护一个nowleast为当前星期前Cx - Sx的最小值以及那个星期编号num，更新ans。</p>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#define Maxn 10000
+using namespace std;
+
+int n , s;
+long long ans;
+int c[Maxn + 10], y[Maxn + 10];
+int nowleast, num;
+
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;s);
+    nowleast = -1;
+    for (int i = 1;i &lt;= n;++ i) {
+        scanf(&quot;%d%d&quot;, &amp;c[i], &amp;y[i]);
+        if (nowleast == -1 || nowleast &gt;= c[i] - s * i ) {
+            nowleast = c[i] - s * i;
+            num = i;
+            ans = ans + c[i] * y[i];
+            //printf(&quot;change to %d : num %d\nans : %lld\n&quot;, nowleast, num, ans);
+        }
+        else {
+            ans = ans + c[num] * y[i] + s * (i - num) * y[i];
+            //printf(&quot;use nowleast %d : num %d\nans : %lld\n&quot;, nowleast, num, ans);
+        }
+    }
+    printf(&quot;%lld\n&quot;, ans);
+    return 0;
+}
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> GreedyAlgorithm </category>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[POJ 1328 3190 GreedyAlgorithm PriorityQueue]]></title>
       <url>https://kaikuxy.github.io/2017/04/03/poj-1328-3190/</url>
       <content type="html"><![CDATA[<p>微软题目没思路。。。。再推推吧。。。</p>
