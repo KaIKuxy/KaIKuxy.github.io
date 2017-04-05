@@ -4,6 +4,133 @@
   
     
     <entry>
+      <title><![CDATA[poj-1017]]></title>
+      <url>https://kaikuxy.github.io/2017/04/05/poj-1017/</url>
+      <content type="html"><![CDATA[<p>装箱问题</p>
+<p>究极特判，直接看代码</p>
+<pre><code class="C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int s1, s2, s3, s4, s5, s6;
+
+int main() {
+    while(scanf(&quot;%d%d%d%d%d%d&quot;, &amp;s1, &amp;s2, &amp;s3, &amp;s4, &amp;s5, &amp;s6), !(s1 == 0 &amp;&amp; s2 == 0 &amp;&amp; s3 == 0 &amp;&amp; s4 == 0 &amp;&amp; s5 == 0 &amp;&amp; s6 == 0)) {
+        int ans = 0;
+        ans += s6;
+        s6 = 0;
+        //printf(&quot;box now 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d\n&quot;, s1, s2, s3, s4, s5, s6);
+
+        ans += s5;
+        if (11 * s5 &lt; s1)
+            s1 -= 11 * s5;
+        else
+            s1 = 0;
+        s5 = 0;
+        //printf(&quot;box now 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d\n&quot;, s1, s2, s3, s4, s5, s6);
+
+        ans += s4;
+        if (5 * s4 &lt; s2)
+            s2 -= 5 * s4;
+        else {
+            int last = 5 * s4 - s2;
+            s2 = 0;
+            if (last * 4 &lt; s1)
+                s1 -= last * 4;
+            else
+                s1 = 0;
+        }
+        s4 = 0;
+        //printf(&quot;box now 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d\n&quot;, s1, s2, s3, s4, s5, s6);
+
+        ans += s3 / 4 + (s3 % 4 != 0);
+        if (s3 % 4 != 0) {
+            int last = 4 - s3 % 4, use;
+            if (last == 3) {
+                if (5 &lt; s2) {
+                    s2 -= 5;
+                    use = 5;
+                }
+                else {
+                    use = s2;
+                    s2 = 0;
+                }
+            }
+            else if (last == 2) {
+                if (3 &lt; s2) {
+                    s2 -= 3;
+                    use = 3;
+                }
+                else {
+                    use = s2;
+                    s2 = 0;
+                }
+            }
+            else {
+                if (1 &lt; s2) {
+                    s2 -= 1;
+                    use = 1;
+                }
+                else {
+                    use = s2;
+                    s2 = 0;
+                }
+            }
+            last = last * 9 - use * 4;
+            if (last &lt; s1)
+                s1 -= last;
+            else
+                s1 = 0;
+        }
+        s3 = 0;
+        //printf(&quot;box now 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d\n&quot;, s1, s2, s3, s4, s5, s6);
+
+        ans += s2 / 9 + (s2 % 9 != 0);
+        if (s2 % 9 != 0) {
+            int last = (9 - s2 % 9) * 4;
+            if (last &lt; s1)
+                s1 -= last;
+            else
+                s1 = 0;
+        }
+        s2 = 0;
+        //printf(&quot;box now 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d\n&quot;, s1, s2, s3, s4, s5, s6);
+
+        ans += s1 / 36 + (s1 % 36 != 0);
+
+        printf(&quot;%d\n&quot;, ans);
+    }
+    return 0;
+}
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> POJ </category>
+            
+            <category> GreedyAlgorithm </category>
+            
+            <category> ACM </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> POJ </tag>
+            
+            <tag> GreedyAlgorithm </tag>
+            
+            <tag> ACM&quot; </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[POJ 2393 GreedyAlgorithm]]></title>
       <url>https://kaikuxy.github.io/2017/04/04/poj-2393/</url>
       <content type="html"><![CDATA[<p>贪心</p>
