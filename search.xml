@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[ML Review]]></title>
+      <url>https://kaikuxy.github.io/2017/04/05/simple-ML-review-plan/</url>
+      <content type="html"><![CDATA[<p>今天进入了unsupervised learning，在看课件看到了一张支持向量机的边界图</p>
+<p>发现忘了支持向量机大致原理了(学んだばかりだったのに)</p>
+<p>意识到很有必要再复习一遍</p>
+<p>先放在这里，慢慢温习吧</p>
+<h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><h2 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h2><h2 id="Evaluate-a-Learning-Algorithm"><a href="#Evaluate-a-Learning-Algorithm" class="headerlink" title="Evaluate a Learning Algorithm"></a>Evaluate a Learning Algorithm</h2><h2 id="SVM-Support-Vector-Machines"><a href="#SVM-Support-Vector-Machines" class="headerlink" title="SVM(Support Vector Machines)"></a>SVM(Support Vector Machines)</h2><h2 id="K-Means-Algorithm"><a href="#K-Means-Algorithm" class="headerlink" title="K-Means Algorithm"></a>K-Means Algorithm</h2>]]></content>
+      
+        <categories>
+            
+            <category> MachineLearning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MachineLearning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[POJ 1017 GreedyAlgorithm]]></title>
       <url>https://kaikuxy.github.io/2017/04/05/poj-1017/</url>
       <content type="html"><![CDATA[<p>装箱问题</p>
@@ -366,9 +390,9 @@ bool cmp(Interval a, Interval b) {
             
             <tag> GreedyAlgorithm </tag>
             
-            <tag> PriorityQueue </tag>
-            
             <tag> ACM </tag>
+            
+            <tag> PriorityQueue </tag>
             
         </tags>
         
