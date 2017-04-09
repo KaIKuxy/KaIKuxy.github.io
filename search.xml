@@ -390,9 +390,9 @@ bool cmp(Interval a, Interval b) {
             
             <tag> GreedyAlgorithm </tag>
             
-            <tag> ACM </tag>
-            
             <tag> PriorityQueue </tag>
+            
+            <tag> ACM </tag>
             
         </tags>
         
